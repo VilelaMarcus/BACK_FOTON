@@ -4,6 +4,8 @@ import validateEnv from './utils/validateEnv';
 import { PrismaClient } from '@prisma/client';
 import redisClient from './utils/connectRedis';
 import userRoute from './routes/user-routes';
+import laserRouter from './routes/laser-routes';
+import customerRouter from './routes/custumer-routes';
 
 
 const prisma = new PrismaClient();
@@ -12,7 +14,10 @@ const app = express();
 async function bootstrap() {
 
   // API Routes
-    app.use('/user', userRoute);
+  app.use('/user', userRoute);
+  app.use('/laser', laserRouter);
+  app.use('/custumer', customerRouter);
+  
 
   const port = process.env.PORT
   app.listen(port, () => {
