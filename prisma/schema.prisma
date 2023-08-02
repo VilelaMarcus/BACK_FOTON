@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User{
+  @@map(name: "users")
+
+  id String  @id @default(uuid())
+  name String  @db.VarChar(255)
+  email String 
+  verified Boolean? @default(false) 
+  
+  password String
+}
+
+
+model Customer{
+  id String  @id @default(uuid())
+  name        String?  
+  owner       String? 
+  email       String?
+  logoUrl     String?
+  address     String?
+  
+  laserOfCostume   LaserOfCostume[]
+}
+
+
+model Laser{
+  id String  @id @default(uuid())
+  name String  @db.VarChar(255) @unique
+  brand String
+
+  laserOfCostume   LaserOfCostume[]
+}
+
+
+model LaserOfCostume{
+  id String     @id @default(uuid())
+  laserId       String
+  custumerId    String
+  customerVisitMeasurements CustomerVisitMeasurement[] 
+
+
+  laser Laser @relation(fields: [laserId], references: [id])
+  custumer Customer @relation(fields: [custumerId], references: [id])
+}
+
+
+model CustomerVisitMeasurement{
+  id                  String  @id @default(uuid())
+  date                DateTime?
+  days                Int?
+  unresolvedDefect    String?
+  oph                 Int?
+  surgery             Int?
+  arf                 Int?
+  arfChange           DateTime?
+  changeNr            Int?
+  v1                  Int?
+  v2                  Int?
+  energy              Float?
+  e1g                 Int?
+  e100                Int?
+  e1                  String?
+  mirrow45p1          String?
+  mirrow45p2          String?
+  foco1               String?
+  foco2               String?
+  e4                  String?
+  main                String?
+  galvos              GalvoStatus?
+  head                String?
+  oc                  String?
+  hr                  String?
+  tecnic              String?
+  servicePerformed    String?
+  observation         String?
+
+
+  he                  Int?
+  halogen             String?
+  water               String?
+  fill                Int?
+  trans               Int?
+  arfPorcentage       Int?
+  spliter             String?
+  m1                  String?
+  m2                  String?
+  m3                  String?
+  l2                  String?
+  l3                  String?
+  integrator          String?
+  motor               String?
+
+  cavity              String?
+  bs                  String?
+  focus               String?
+  aten                String?
+  mirrow45            String?
+  eletronics          String?
+
+  useHours            Int?
+  lampadHours         Int?
+
+  osc                 Float?
+  amp                 Float?
+  powerAmp            Float?
+  powerOsc            Float?
+  pumpings            Int?
+
+
+  laserOfCostumeId    String
+
+  laserOfCostume LaserOfCostume @relation(fields: [laserOfCostumeId], references: [id])
+}
+
+enum GalvoStatus {
+  OK
+  MEDIO
+  RUIM
+}
