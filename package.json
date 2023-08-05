@@ -24,6 +24,9 @@
     "@types/node": "^20.4.5",
     "typescript": "^5.1.6"
   },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only --exit-child src/app.ts",
     "migrate": "npx prisma migrate dev --name user-entity && npx prisma generate",

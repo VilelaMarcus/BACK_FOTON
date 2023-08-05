@@ -15,7 +15,7 @@ model User{
   name String  @db.VarChar(255)
   email String 
   verified Boolean? @default(false) 
-  
+  role String
   password String
 }
 
@@ -56,7 +56,6 @@ model LaserOfCostume{
 model CustomerVisitMeasurement{
   id                  String  @id @default(uuid())
   date                DateTime?
-  days                Int?
   unresolvedDefect    String?
   oph                 Int?
   surgery             Int?
@@ -69,6 +68,7 @@ model CustomerVisitMeasurement{
   e1g                 Int?
   e100                Int?
   e1                  String?
+  hom                 String?
   mirrow45p1          String?
   mirrow45p2          String?
   foco1               String?
@@ -111,8 +111,8 @@ model CustomerVisitMeasurement{
 
   osc                 Float?
   amp                 Float?
-  powerAmp            Float?
-  powerOsc            Float?
+  powerAmp            Int?
+  powerOsc            Int?
   pumpings            Int?
 
 
