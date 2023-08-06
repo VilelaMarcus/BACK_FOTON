@@ -6,6 +6,7 @@ import redisClient from './utils/connectRedis';
 import userRoute from './routes/user-routes';
 import laserRouter from './routes/laser-routes';
 import customerRouter from './routes/custumer-routes';
+import visitMeasurementRouter from './routes/custumer-routes copy';
 
 
 const prisma = new PrismaClient();
@@ -17,6 +18,7 @@ async function bootstrap() {
   app.use('/user', userRoute);
   app.use('/laser', laserRouter);
   app.use('/custumer', customerRouter);
+  app.use('/visitMeasurement', visitMeasurementRouter);
   
 
   const port = process.env.PORT

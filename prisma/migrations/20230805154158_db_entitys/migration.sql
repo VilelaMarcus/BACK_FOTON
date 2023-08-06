@@ -7,6 +7,7 @@ CREATE TABLE "users" (
     "name" VARCHAR(255) NOT NULL,
     "email" TEXT NOT NULL,
     "verified" BOOLEAN DEFAULT false,
+    "role" TEXT NOT NULL,
     "password" TEXT NOT NULL,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
@@ -34,19 +35,18 @@ CREATE TABLE "Laser" (
 );
 
 -- CreateTable
-CREATE TABLE "LaserOfCostume" (
+CREATE TABLE "LaserOfCustomer" (
     "id" TEXT NOT NULL,
-    "laserId" TEXT NOT NULL,
-    "custumerId" TEXT NOT NULL,
+    "laser_id" TEXT NOT NULL,
+    "customer_id" TEXT NOT NULL,
 
-    CONSTRAINT "LaserOfCostume_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "LaserOfCustomer_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "CustomerVisitMeasurement" (
     "id" TEXT NOT NULL,
     "date" TIMESTAMP(3),
-    "days" INTEGER,
     "unresolvedDefect" TEXT,
     "oph" INTEGER,
     "surgery" INTEGER,
@@ -59,6 +59,7 @@ CREATE TABLE "CustomerVisitMeasurement" (
     "e1g" INTEGER,
     "e100" INTEGER,
     "e1" TEXT,
+    "hom" TEXT,
     "mirrow45p1" TEXT,
     "mirrow45p2" TEXT,
     "foco1" TEXT,
@@ -96,10 +97,10 @@ CREATE TABLE "CustomerVisitMeasurement" (
     "lampadHours" INTEGER,
     "osc" DOUBLE PRECISION,
     "amp" DOUBLE PRECISION,
-    "powerAmp" DOUBLE PRECISION,
-    "powerOsc" DOUBLE PRECISION,
+    "powerAmp" INTEGER,
+    "powerOsc" INTEGER,
     "pumpings" INTEGER,
-    "laserOfCostumeId" TEXT NOT NULL,
+    "laser_of_customer_id" TEXT NOT NULL,
 
     CONSTRAINT "CustomerVisitMeasurement_pkey" PRIMARY KEY ("id")
 );
@@ -108,10 +109,10 @@ CREATE TABLE "CustomerVisitMeasurement" (
 CREATE UNIQUE INDEX "Laser_name_key" ON "Laser"("name");
 
 -- AddForeignKey
-ALTER TABLE "LaserOfCostume" ADD CONSTRAINT "LaserOfCostume_laserId_fkey" FOREIGN KEY ("laserId") REFERENCES "Laser"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "LaserOfCustomer" ADD CONSTRAINT "LaserOfCustomer_laser_id_fkey" FOREIGN KEY ("laser_id") REFERENCES "Laser"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "LaserOfCostume" ADD CONSTRAINT "LaserOfCostume_custumerId_fkey" FOREIGN KEY ("custumerId") REFERENCES "Customer"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "LaserOfCustomer" ADD CONSTRAINT "LaserOfCustomer_customer_id_fkey" FOREIGN KEY ("customer_id") REFERENCES "Customer"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "CustomerVisitMeasurement" ADD CONSTRAINT "CustomerVisitMeasurement_laserOfCostumeId_fkey" FOREIGN KEY ("laserOfCostumeId") REFERENCES "LaserOfCostume"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "CustomerVisitMeasurement" ADD CONSTRAINT "CustomerVisitMeasurement_laser_of_customer_id_fkey" FOREIGN KEY ("laser_of_customer_id") REFERENCES "LaserOfCustomer"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

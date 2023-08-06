@@ -1,11 +1,12 @@
-import {
-    FocusArea,
-    Industry,
-    PrismaClient,
-    StartupStage,
-    User,
-  } from '@prisma/client';
-  
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable no-console */
+/* eslint-disable unicorn/no-null */
+/* eslint-disable unicorn/prefer-top-level-await */
+/* eslint-disable unicorn/no-process-exit */
+
+// @ts-nocheck
+
+const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
   
@@ -14,7 +15,8 @@ const users = [
       id: '24de6adb-1e52-4d86-a298-242cf3f3ee53',
       email: 'fabio.vilela@gmail.com',
       name: 'Fabio Vilela',
-      password: "pendra9456"
+      role: "CEO",
+      password: "pendra9356"
     },
     {
         id: 'f3a40006-c2c8-4834-97a9-519ef2429ad3',
@@ -22,7 +24,7 @@ const users = [
         name: 'Edmir Vilela',
         verified: true,
         role: "Tecnico",
-        password: "pendra9456"
+        password: "pendra9356"
     },
     {
         id: 'abf12498-60aa-4f7b-aa55-7e5648531889',
@@ -30,7 +32,7 @@ const users = [
         name: 'Evaldo Vilela',
         verified: true,
         role: "Tecnico",
-        password: "pendra9456"
+        password: "pendra9356"
     },
 ];
 
@@ -195,71 +197,71 @@ const Lasers = [
 ];
 
 
-const laserOfCustumer = [
+const laserOfCustomer = [
     {
         id: '573a0bd2-b6be-4b97-b4d4-471f5be5a125',
-        laserId: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        custumerId: 'db4a4eb1-bdf1-42e6-8f72-567028b59102'
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        customer_id: 'db4a4eb1-bdf1-42e6-8f72-567028b59102'
     },
     {
         id: 'f2cc6b43-17ff-40ea-8070-4089c0e0a003',
-        laserId: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        custumerId: 'c5963610-b2c3-4bcb-9e73-9f340bad427a'
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        customer_id: 'c5963610-b2c3-4bcb-9e73-9f340bad427a'
     },
     {
         id: '917cafc3-9dfd-400e-86b6-8ceef1840499',
-        laserId: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        custumerId: '812c280e-8c26-4432-b141-dba53e8e4f88'
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        customer_id: '812c280e-8c26-4432-b141-dba53e8e4f88'
     },
     {
         id: 'c462db15-864f-474f-ba70-0a47a3d23159',
-        laserId: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        custumerId: '6be6911b-0eee-4694-bd55-fe11b0002bdd'
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        customer_id: '6be6911b-0eee-4694-bd55-fe11b0002bdd'
     },
     {
         id: '58ea7a32-232a-407a-9303-95a240d49df8',
-        laserId: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        custumerId: '11930276-8339-440a-a25c-1003285e6c1d',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        customer_id: '11930276-8339-440a-a25c-1003285e6c1d',
     },
     {
         id: '995d4997-0166-416f-b5fb-994238bc9431',
-        laserId: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        custumerId: 'c6e42d7d-c9d4-4004-8fd3-61be6d63110c',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        customer_id: 'c6e42d7d-c9d4-4004-8fd3-61be6d63110c',
     },
     {
         id: 'd993ea9f-474e-498a-af79-bacdc80b61a3',
-        laserId: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        custumerId: 'd515cd58-220b-43c5-839a-d4df00e4b21a'
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        customer_id: 'd515cd58-220b-43c5-839a-d4df00e4b21a'
     },
     {
         id: '765a5355-d02d-481e-869a-b72826164c25',
-        laserId: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        custumerId: 'b8becd99-9cbe-4acd-8767-ceb0cc25919b'
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        customer_id: 'b8becd99-9cbe-4acd-8767-ceb0cc25919b'
     },
     {
         id: '533fefa7-23c2-4390-8579-52947008b33c',
-        laserId: 'f32be104-59f4-4d92-ae8d-7601a4959441',
-        custumerId: '03ec1541-3fc8-4420-8788-5e628d511f84',
+        laser_id: 'f32be104-59f4-4d92-ae8d-7601a4959441',
+        customer_id: '03ec1541-3fc8-4420-8788-5e628d511f84',
     },
     {
         id: '24de6adb-1e52-4d86-a298-242cf3f3ee53',
-        laserId: 'f32be104-59f4-4d92-ae8d-7601a4959441',
-        custumerId: '700e37de-e030-462a-b8ca-1c88f93db35e',
+        laser_id: 'f32be104-59f4-4d92-ae8d-7601a4959441',
+        customer_id: '700e37de-e030-462a-b8ca-1c88f93db35e',
     },
     {
-        id: '24de6adb-1e52-4d86-a298-242cf3f3ee53',
-        laserId: 'f32be104-59f4-4d92-ae8d-7601a4959441',
-        custumerId: '10b3c35e-a4b0-4652-a8b2-9c38d18ba583',
+        id: 'f611782a-d5d9-48f2-8edb-851f6abb2658',
+        laser_id: 'f32be104-59f4-4d92-ae8d-7601a4959441',
+        customer_id: '10b3c35e-a4b0-4652-a8b2-9c38d18ba583',
     },
     {
-        id: '24de6adb-1e52-4d86-a298-242cf3f3ee53',
-        laserId: 'f32be104-59f4-4d92-ae8d-7601a4959441',
-        custumerId: '2e9f772c-be94-448b-a53f-c59a1cde711f',
+        id: 'd2ecd42e-9be3-4bb8-be8f-252960dad0a1',
+        laser_id: 'f32be104-59f4-4d92-ae8d-7601a4959441',
+        customer_id: '2e9f772c-be94-448b-a53f-c59a1cde711f',
     },
 ];
 
 
-const CustomerVisitMeasurement = [
+const CustomerVisitMaesurement = [
     {
         id: 'db4a4eb1-bdf1-42e6-8f72-567028b59102',
         date: new Date(2023, 5, 13),            
@@ -289,7 +291,7 @@ const CustomerVisitMeasurement = [
         tecnic: 'Evaldo',             
         servicePerformed: 'Revisao, troca da cavidade',    
         observation:'', 
-        laserOfCostumeId: '573a0bd2-b6be-4b97-b4d4-471f5be5a125',        
+        laser_of_customer_id: '573a0bd2-b6be-4b97-b4d4-471f5be5a125',        
     },
     {
         id: 'b35a7c2c-738a-4725-a706-535a20e44c6f',
@@ -320,7 +322,7 @@ const CustomerVisitMeasurement = [
         tecnic: 'Fabio',             
         servicePerformed: 'Revisao',    
         observation:'',           
-        laserOfCostumeId: 'f2cc6b43-17ff-40ea-8070-4089c0e0a003',
+        laser_of_customer_id: 'f2cc6b43-17ff-40ea-8070-4089c0e0a003',
     },
     {
         id: '9ee5edfa-55e9-4d3f-82af-cd24f0cc3e63',
@@ -351,7 +353,7 @@ const CustomerVisitMeasurement = [
         tecnic: 'Fabio',             
         servicePerformed: 'Revisao',    
         observation:'',        
-        laserOfCostumeId: '917cafc3-9dfd-400e-86b6-8ceef1840499',   
+        laser_of_customer_id: '917cafc3-9dfd-400e-86b6-8ceef1840499',   
     },
     {
         id: '862baf84-9cfa-4fa9-8119-42ec114e5a4d',
@@ -382,7 +384,7 @@ const CustomerVisitMeasurement = [
         tecnic: 'Evaldo',             
         servicePerformed: 'Revisao',    
         observation:'',        
-        laserOfCostumeId: 'c462db15-864f-474f-ba70-0a47a3d23159',    
+        laser_of_customer_id: 'c462db15-864f-474f-ba70-0a47a3d23159',    
     },
     {
         id: '111cf0a9-d568-488f-a409-1994abfa4b4e',
@@ -397,7 +399,7 @@ const CustomerVisitMeasurement = [
         tecnic: 'Fabio',             
         servicePerformed: 'Revisao',    
         observation:'',       
-        laserOfCostumeId: '533fefa7-23c2-4390-8579-52947008b33c',  
+        laser_of_customer_id: '533fefa7-23c2-4390-8579-52947008b33c',  
     },
     {
         id: '8124409b-3e7e-40ca-8292-8d106bf201ec',
@@ -412,6 +414,41 @@ const CustomerVisitMeasurement = [
         tecnic: 'Fabio',             
         servicePerformed: 'Revisao',    
         observation:'',       
-        laserOfCostumeId: '24de6adb-1e52-4d86-a298-242cf3f3ee53',  
+        laser_of_customer_id: '24de6adb-1e52-4d86-a298-242cf3f3ee53',  
     },
 ];
+
+
+async function main() {
+    
+    await prisma.user.createMany({
+      data: users,
+    });
+
+    await prisma.customer.createMany({
+      data: Customer,
+    });
+
+    await prisma.laser.createMany({
+      data: Lasers,
+    });
+
+    await prisma.laserOfCustomer.createMany({
+      data: laserOfCustomer,
+    });
+  
+    await prisma.customerVisitMeasurement.createMany({
+      data: CustomerVisitMaesurement,
+    });
+}
+  
+  main()
+    .then(async () => {
+      await prisma.$disconnect();
+    })
+    .catch(async error => {
+      console.log('error seeding', error);
+      await prisma.$disconnect();
+      process.exit(1);
+    });
+  

@@ -28,7 +28,7 @@ model Customer{
   logoUrl     String?
   address     String?
   
-  laserOfCostume   LaserOfCostume[]
+  laserOfCustomer   LaserOfCustomer[]
 }
 
 
@@ -37,19 +37,19 @@ model Laser{
   name String  @db.VarChar(255) @unique
   brand String
 
-  laserOfCostume   LaserOfCostume[]
+  laserOfCustomer   LaserOfCustomer[]
 }
 
 
-model LaserOfCostume{
+model LaserOfCustomer{
   id String     @id @default(uuid())
-  laserId       String
-  custumerId    String
+  laser_id       String
+  customer_id    String
   customerVisitMeasurements CustomerVisitMeasurement[] 
 
 
-  laser Laser @relation(fields: [laserId], references: [id])
-  custumer Customer @relation(fields: [custumerId], references: [id])
+  laser Laser @relation(fields: [laser_id], references: [id])
+  custumer Customer @relation(fields: [customer_id], references: [id])
 }
 
 
@@ -116,9 +116,9 @@ model CustomerVisitMeasurement{
   pumpings            Int?
 
 
-  laserOfCostumeId    String
+  laser_of_customer_id  String
 
-  laserOfCostume LaserOfCostume @relation(fields: [laserOfCostumeId], references: [id])
+  laserOfCustomer  LaserOfCustomer @relation(fields: [laser_of_customer_id], references: [id])
 }
 
 enum GalvoStatus {
