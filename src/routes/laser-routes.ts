@@ -6,6 +6,6 @@ import getLaserHandler from '../feature/laser/get-laser-handler';
 const laserRouter = Router();
 
 laserRouter.get('/',  createRoute(getLaserHandler));
-laserRouter.get('/:id', createRoute(getLaserHandler));
+laserRouter.get('/:name', createRoute(getLaserHandler));
 
 export default laserRouter;
