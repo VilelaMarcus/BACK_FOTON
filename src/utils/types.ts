@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
-import { JwtPayload } from 'jsonwebtoken';
 
 export type Factory<Shape> = (state?: Partial<Shape>) => Shape;
 
@@ -19,7 +18,6 @@ export interface CustomApiRequest<P> extends Omit<Request, 'query' | 'body'> {
     [key: string]: string;
   };
   body: P;
-  user: JwtPayload;
 }
 
 /**
@@ -38,3 +36,71 @@ export type RequestResponseObject<RequestData = any, ResponseData = any> = {
   request: CustomApiRequest<RequestData>;
   response: Response<ResponseData>;
 };
+
+export type VisitMeasurementItem = {
+  id : string,    
+  date :string,  
+  unresolvedDefect :string,  
+  oph :string,  
+  surgery :string,  
+  arf :string,  
+  arfChange :string,  
+  changeNr :string,  
+  v1 :string,  
+  v2 :string,  
+  energy :string,  
+  e1g :string,  
+  e100 :string,  
+  e1 :string,  
+  hom :string,  
+  mirrow45p1 :string,  
+  mirrow45p2 :string,  
+  foco1 :string,  
+  foco2 :string,  
+  e4 :string,  
+  main :string,  
+  galvos :string, 
+  head :string,  
+  oc :string,  
+  hr :string,  
+  tecnic :string,  
+  servicePerformed :string,  
+  observation :string,  
+
+
+  he :string,  
+  halogen :string,  
+  water :string,  
+  fill :string,  
+  trans :string,  
+  arfPorcentage :string,  
+  spliter :string,  
+  m1 :string,  
+  m2 :string,  
+  m3 :string,  
+  l2 :string,  
+  l3 :string,  
+  integrator :string,  
+  motor :string,  
+
+  cavity :string,  
+  bs :string,  
+  focus :string,  
+  aten :string,  
+  mirrow45 :string,  
+  eletronics :string,  
+
+  useHours :string,  
+  lampadHours :string,  
+
+  osc :string,  
+  amp :string,  
+  powerAmp :string,  
+  powerOsc :string,  
+  pumpings :string,  
+
+  laser_of_customer_id:string,
+
+};
+
+

@@ -7,8 +7,6 @@ const userDetailsHandler: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
   const user = await prisma.user.findMany();
 
-  console.log(user)
-
   if (user === null) {
     throw new HttpError(404, 'Not found');
   }

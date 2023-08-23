@@ -16,11 +16,13 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "Customer" (
     "id" TEXT NOT NULL,
-    "name" TEXT,
+    "custumer_name" TEXT,
     "owner" TEXT,
     "email" TEXT,
     "logoUrl" TEXT,
     "address" TEXT,
+    "city" TEXT,
+    "zip_code" TEXT,
 
     CONSTRAINT "Customer_pkey" PRIMARY KEY ("id")
 );
@@ -28,7 +30,7 @@ CREATE TABLE "Customer" (
 -- CreateTable
 CREATE TABLE "Laser" (
     "id" TEXT NOT NULL,
-    "name" VARCHAR(255) NOT NULL,
+    "laser_name" VARCHAR(255) NOT NULL,
     "brand" TEXT NOT NULL,
 
     CONSTRAINT "Laser_pkey" PRIMARY KEY ("id")
@@ -46,18 +48,18 @@ CREATE TABLE "LaserOfCustomer" (
 -- CreateTable
 CREATE TABLE "CustomerVisitMeasurement" (
     "id" TEXT NOT NULL,
-    "date" TIMESTAMP(3),
+    "date" TEXT,
     "unresolvedDefect" TEXT,
-    "oph" INTEGER,
-    "surgery" INTEGER,
-    "arf" INTEGER,
-    "arfChange" TIMESTAMP(3),
-    "changeNr" INTEGER,
-    "v1" INTEGER,
-    "v2" INTEGER,
-    "energy" DOUBLE PRECISION,
-    "e1g" INTEGER,
-    "e100" INTEGER,
+    "oph" TEXT,
+    "surgery" TEXT,
+    "arf" TEXT,
+    "arfChange" TEXT,
+    "changeNr" TEXT,
+    "v1" TEXT,
+    "v2" TEXT,
+    "energy" TEXT,
+    "e1g" TEXT,
+    "e100" TEXT,
     "e1" TEXT,
     "hom" TEXT,
     "mirrow45p1" TEXT,
@@ -73,12 +75,12 @@ CREATE TABLE "CustomerVisitMeasurement" (
     "tecnic" TEXT,
     "servicePerformed" TEXT,
     "observation" TEXT,
-    "he" INTEGER,
+    "he" TEXT,
     "halogen" TEXT,
     "water" TEXT,
-    "fill" INTEGER,
-    "trans" INTEGER,
-    "arfPorcentage" INTEGER,
+    "fill" TEXT,
+    "trans" TEXT,
+    "arfPorcentage" TEXT,
     "spliter" TEXT,
     "m1" TEXT,
     "m2" TEXT,
@@ -93,20 +95,20 @@ CREATE TABLE "CustomerVisitMeasurement" (
     "aten" TEXT,
     "mirrow45" TEXT,
     "eletronics" TEXT,
-    "useHours" INTEGER,
-    "lampadHours" INTEGER,
-    "osc" DOUBLE PRECISION,
-    "amp" DOUBLE PRECISION,
-    "powerAmp" INTEGER,
-    "powerOsc" INTEGER,
-    "pumpings" INTEGER,
+    "useHours" TEXT,
+    "lampadHours" TEXT,
+    "osc" TEXT,
+    "amp" TEXT,
+    "powerAmp" TEXT,
+    "powerOsc" TEXT,
+    "pumpings" TEXT,
     "laser_of_customer_id" TEXT NOT NULL,
 
     CONSTRAINT "CustomerVisitMeasurement_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Laser_name_key" ON "Laser"("name");
+CREATE UNIQUE INDEX "Laser_laser_name_key" ON "Laser"("laser_name");
 
 -- AddForeignKey
 ALTER TABLE "LaserOfCustomer" ADD CONSTRAINT "LaserOfCustomer_laser_id_fkey" FOREIGN KEY ("laser_id") REFERENCES "Laser"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

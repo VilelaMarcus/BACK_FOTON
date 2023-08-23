@@ -22,11 +22,13 @@ model User{
 
 model Customer{
   id String  @id @default(uuid())
-  name        String?  
-  owner       String? 
-  email       String?
-  logoUrl     String?
-  address     String?
+  custumer_name       String?  
+  owner               String? 
+  email               String?
+  logoUrl             String?
+  address             String?
+  city                String?
+  zip_code            String?
   
   laserOfCustomer   LaserOfCustomer[]
 }
@@ -34,7 +36,7 @@ model Customer{
 
 model Laser{
   id String  @id @default(uuid())
-  name String  @db.VarChar(255) @unique
+  laser_name String  @db.VarChar(255) @unique
   brand String
 
   laserOfCustomer   LaserOfCustomer[]
@@ -55,18 +57,18 @@ model LaserOfCustomer{
 
 model CustomerVisitMeasurement{
   id                  String  @id @default(uuid())
-  date                DateTime?
+  date                String?
   unresolvedDefect    String?
-  oph                 Int?
-  surgery             Int?
-  arf                 Int?
-  arfChange           DateTime?
-  changeNr            Int?
-  v1                  Int?
-  v2                  Int?
-  energy              Float?
-  e1g                 Int?
-  e100                Int?
+  oph                 String?
+  surgery             String?
+  arf                 String?
+  arfChange           String?
+  changeNr            String?
+  v1                  String?
+  v2                  String?
+  energy              String?
+  e1g                 String?
+  e100                String?
   e1                  String?
   hom                 String?
   mirrow45p1          String?
@@ -84,12 +86,12 @@ model CustomerVisitMeasurement{
   observation         String?
 
 
-  he                  Int?
+  he                  String?
   halogen             String?
   water               String?
-  fill                Int?
-  trans               Int?
-  arfPorcentage       Int?
+  fill                String?
+  trans               String?
+  arfPorcentage       String?
   spliter             String?
   m1                  String?
   m2                  String?
@@ -106,14 +108,14 @@ model CustomerVisitMeasurement{
   mirrow45            String?
   eletronics          String?
 
-  useHours            Int?
-  lampadHours         Int?
+  useHours            String?
+  lampadHours         String?
 
-  osc                 Float?
-  amp                 Float?
-  powerAmp            Int?
-  powerOsc            Int?
-  pumpings            Int?
+  osc                 String?
+  amp                 String?
+  powerAmp            String?
+  powerOsc            String?
+  pumpings            String?
 
 
   laser_of_customer_id  String

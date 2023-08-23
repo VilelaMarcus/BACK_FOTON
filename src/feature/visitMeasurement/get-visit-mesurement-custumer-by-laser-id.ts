@@ -1,23 +1,27 @@
 import { PrismaClient } from '@prisma/client';
 
 import { HttpError } from '../../utils/errors';
-import { ApiHandler } from '../../utils/types';
+import { ApiHandler, VisitMeasurementItem } from '../../utils/types';
+
+
+
 
 const getVisitMeasurmentCustumerByLaserIdHandler: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
 
   const { name } = request.params;
-  
+  console.log(name)
+
   const laser = await prisma.laser.findUnique({
     where: {
-    name: name,
+      laser_name: name,
     },
   });
 
   const id = laser?.id || '';
 
 
-  const visitMeasurment = await prisma.$queryRaw`
+  const visitMeasurement = await prisma.$queryRaw<VisitMeasurementItem[]>`
   SELECT *
     FROM public."LaserOfCustomer" loc
     JOIN public."Customer" c ON loc.customer_id = c.id
@@ -26,18 +30,33 @@ const getVisitMeasurmentCustumerByLaserIdHandler: ApiHandler = async ({ request,
     WHERE l.id = ${id};
 `;
 
-  console.log(visitMeasurment)
+const groupedData = visitMeasurement.reduce<{ [key: string]: VisitMeasurementItem }>((groups, item) => {
+  const groupId = item.laser_of_customer_id;
+  const currentDate = new Date(item.date.split('/').reverse().join('/')); // Convert to Date
+  const existingDate = groups[groupId] ? new Date(groups[groupId].date.split('/').reverse().join('/')) : '';
 
-  if (visitMeasurment === null) {
+  if (!groups[groupId] || currentDate > existingDate) {
+    groups[groupId] = item;
+  }
+  return groups;
+}, {});
+
+// Convert the grouped data object back to an array
+const filteredArray = Object.values(groupedData);
+
+
+console.log({visitMeasurement})
+console.log({filteredArray});
+
+  if (visitMeasurement === null) {
     throw new HttpError(404, 'Not found');
   }
 
 
   await prisma.$disconnect();
   response.status(200).json({
-    visitMeasurment: {
-      ...visitMeasurment,
-    },
+    visitMeasurement: filteredArray,
+    name,
   });
 };
 

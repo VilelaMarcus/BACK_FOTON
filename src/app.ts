@@ -12,9 +12,10 @@ import visitMeasurementRouter from './routes/custumer-visit-measurement-routes';
 
 const prisma = new PrismaClient();
 const app = express();
+app.use(cors());
+app.use(express.json({ limit: '10mb' }));
 
 async function bootstrap() {
-  app.use(cors());
   // API Routes
   app.use('/user', userRoute);
   app.use('/laser', laserRouter);
