@@ -6,10 +6,11 @@ import { ApiHandler, VisitMeasurementItem } from '../../utils/types';
 
 
 
-const getVisitMeasurmentCustumerByLaserIdHandler: ApiHandler = async ({ request, response }) => {
+const getVisitMeasurmentCustumerByCustomerIdHandler: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
 
   const { name } = request.params;
+  console.log({name})
   console.log(name)
 
   const laser = await prisma.laser.findUnique({
@@ -22,13 +23,13 @@ const getVisitMeasurmentCustumerByLaserIdHandler: ApiHandler = async ({ request,
 
 
   const visitMeasurement = await prisma.$queryRaw<VisitMeasurementItem[]>`
-  SELECT *
-    FROM public."LaserOfCustomer" loc
-    JOIN public."Customer" c ON loc.customer_id = c.id
-    JOIN public."Laser" l ON loc.laser_id = l.id
-    JOIN public."CustomerVisitMeasurement" m ON loc.id = m.laser_of_customer_id
-    WHERE l.id = ${id};
-`;
+    SELECT *
+      FROM public."LaserOfCustomer" loc
+      JOIN public."Customer" c ON loc.customer_id = c.id
+      JOIN public."Laser" l ON loc.laser_id = l.id
+      JOIN public."CustomerVisitMeasurement" m ON loc.id = m.laser_of_customer_id
+      WHERE c.id = ${id};
+  `;
 
 const groupedData = visitMeasurement.reduce<{ [key: string]: VisitMeasurementItem }>((groups, item) => {
   const groupId = item.laser_of_customer_id;
@@ -60,4 +61,4 @@ console.log({filteredArray});
   });
 };
 
-export default getVisitMeasurmentCustumerByLaserIdHandler;
+export default getVisitMeasurmentCustumerByCustomerIdHandler;

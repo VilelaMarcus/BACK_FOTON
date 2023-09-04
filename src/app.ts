@@ -19,7 +19,7 @@ async function bootstrap() {
   // API Routes
   app.use('/user', userRoute);
   app.use('/laser', laserRouter);
-  app.use('/custumer', customerRouter);
+  app.use('/customer', customerRouter);
   app.use('/custumerMeasurement', visitMeasurementRouter);
   
 
