@@ -23,7 +23,7 @@ async function bootstrap() {
   app.use('/custumerMeasurement', visitMeasurementRouter);
   
 
-  const port = process.env.PORT
+  const port = 3005;
   app.listen(port, () => {
     console.log(`Server on port: ${port}`);
   });
