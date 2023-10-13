@@ -3,8 +3,6 @@ import { PrismaClient } from '@prisma/client';
 import { HttpError } from '../../utils/errors';
 import { ApiHandler } from '../../utils/types';
 
-import { TokenPayload } from '../authentication/authentication-types';
-
 const updateVisitMeasurmentCustumerHandler: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
 
@@ -35,7 +33,7 @@ const updateVisitMeasurmentCustumerHandler: ApiHandler = async ({ request, respo
     head,               
     oc,                 
     hr,                 
-    tecnic,             
+    tecnic_id,             
     servicePerformed,   
     observation,
     he,                  
@@ -106,7 +104,7 @@ const updateVisitMeasurmentCustumerHandler: ApiHandler = async ({ request, respo
       ...(head && { head }),
       ...(oc && { oc }),
       ...(hr && { hr }),
-      ...(tecnic && { tecnic }),
+      ...(tecnic_id && { tecnic_id }),
       ...(servicePerformed && { servicePerformed }),
       ...(observation && { observation }),
       ...(he && { he }),

@@ -8,18 +8,6 @@ datasource db {
 }
 
 
-model User{
-  @@map(name: "users")
-
-  id String  @id @default(uuid())
-  name String  @db.VarChar(255)
-  email String 
-  verified Boolean? @default(false) 
-  role String
-  password String
-}
-
-
 model Customer{
   id String  @id @default(uuid())
   custumer_name       String?  
@@ -31,6 +19,16 @@ model Customer{
   zip_code            String?
   
   laserOfCustomer   LaserOfCustomer[]
+}
+
+
+model User{
+  id String      @id @default(uuid())
+  tecnic_name    String  @unique
+  email          String? 
+  verified       Boolean? @default(false) 
+  role           String?
+  password       String?
 }
 
 
@@ -81,7 +79,7 @@ model CustomerVisitMeasurement{
   head                String?
   oc                  String?
   hr                  String?
-  tecnic              String?
+  tecnic_id           String?
   servicePerformed    String?
   observation         String?
 

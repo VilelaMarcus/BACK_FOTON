@@ -63,7 +63,7 @@ export type VisitMeasurementItem = {
   head :string,  
   oc :string,  
   hr :string,  
-  tecnic :string,  
+  tecnic_id :string,  
   servicePerformed :string,  
   observation :string,  
 

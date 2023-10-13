@@ -2,18 +2,6 @@
 CREATE TYPE "GalvoStatus" AS ENUM ('OK', 'MEDIO', 'RUIM');
 
 -- CreateTable
-CREATE TABLE "users" (
-    "id" TEXT NOT NULL,
-    "name" VARCHAR(255) NOT NULL,
-    "email" TEXT NOT NULL,
-    "verified" BOOLEAN DEFAULT false,
-    "role" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
-
-    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Customer" (
     "id" TEXT NOT NULL,
     "custumer_name" TEXT,
@@ -25,6 +13,18 @@ CREATE TABLE "Customer" (
     "zip_code" TEXT,
 
     CONSTRAINT "Customer_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "User" (
+    "id" TEXT NOT NULL,
+    "tecnic_name" TEXT NOT NULL,
+    "email" TEXT,
+    "verified" BOOLEAN DEFAULT false,
+    "role" TEXT,
+    "password" TEXT,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -72,7 +72,7 @@ CREATE TABLE "CustomerVisitMeasurement" (
     "head" TEXT,
     "oc" TEXT,
     "hr" TEXT,
-    "tecnic" TEXT,
+    "tecnic_id" TEXT,
     "servicePerformed" TEXT,
     "observation" TEXT,
     "he" TEXT,
@@ -106,6 +106,9 @@ CREATE TABLE "CustomerVisitMeasurement" (
 
     CONSTRAINT "CustomerVisitMeasurement_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_tecnic_name_key" ON "User"("tecnic_name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Laser_laser_name_key" ON "Laser"("laser_name");

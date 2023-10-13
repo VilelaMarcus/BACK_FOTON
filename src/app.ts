@@ -8,6 +8,7 @@ import userRoute from './routes/user-routes';
 import laserRouter from './routes/laser-routes';
 import customerRouter from './routes/custumer-routes';
 import visitMeasurementRouter from './routes/custumer-visit-measurement-routes';
+import dashboadRouter from './routes/dashboard-routes';
 
 
 const prisma = new PrismaClient();
@@ -18,6 +19,7 @@ app.use(express.json({ limit: '10mb' }));
 async function bootstrap() {
   // API Routes
   app.use('/user', userRoute);
+  app.use('/dashboard', dashboadRouter);
   app.use('/laser', laserRouter);
   app.use('/customer', customerRouter);
   app.use('/custumerMeasurement', visitMeasurementRouter);
