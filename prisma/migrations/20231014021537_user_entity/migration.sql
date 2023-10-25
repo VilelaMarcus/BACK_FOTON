@@ -72,7 +72,7 @@ CREATE TABLE "CustomerVisitMeasurement" (
     "head" TEXT,
     "oc" TEXT,
     "hr" TEXT,
-    "tecnic_id" TEXT,
+    "tecnic" TEXT,
     "servicePerformed" TEXT,
     "observation" TEXT,
     "he" TEXT,

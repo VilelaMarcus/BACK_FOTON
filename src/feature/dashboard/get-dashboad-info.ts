@@ -59,14 +59,27 @@ const getDashboadInfo: ApiHandler = async ({ request, response }) => {
     throw new HttpError(404, 'Not found');
   }
 
-  const dashboadInfo = {
-    last10Visits,
+  // Calculate visits per technician
+  const visitsPerTechnician = visitMeasurements.reduce((acc, visit) => {
+    const tecnic = visit.tecnic; // Assuming the property is 'tecnic_name'
+    acc[tecnic] = (acc[tecnic] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const dashboardInfo = {
+    last10Visits: sortedVisits.slice(0, 10),
     currentMonthVisitCount,
     lastMonthVisitCount,
-  }
+    visitsPerTechnician: Object.entries(visitsPerTechnician).map(([tecnic, visits]) => ({
+      tecnic,
+      visits,
+    })),
+  };
+
+  console.log({visitsPerTechnician});
 
   await prisma.$disconnect();
-  response.status(200).json(dashboadInfo);
+  response.status(200).json(dashboardInfo);
 };
 
 export default getDashboadInfo;

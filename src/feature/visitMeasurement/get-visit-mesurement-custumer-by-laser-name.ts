@@ -8,12 +8,8 @@ import { ApiHandler, VisitMeasurementItem } from '../../utils/types';
 
 const getVisitMeasurmentCustumerByLaserNameHandler: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
-
-  console.log('aqui');
   
   const { name } = request.params;
-  console.log(name)
-  console.log(request);
 
   const laser = await prisma.laser.findUnique({
     where: {
@@ -30,7 +26,7 @@ const getVisitMeasurmentCustumerByLaserNameHandler: ApiHandler = async ({ reques
     JOIN public."Customer" c ON loc.customer_id = c.id
     JOIN public."Laser" l ON loc.laser_id = l.id
     JOIN public."CustomerVisitMeasurement" m ON loc.id = m.laser_of_customer_id
-    WHERE l.id = ${id};
+        WHERE l.id = ${id};
 `;
 
 const groupedData = visitMeasurement.reduce<{ [key: string]: VisitMeasurementItem }>((groups, item) => {

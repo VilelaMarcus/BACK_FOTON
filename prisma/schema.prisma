@@ -79,7 +79,7 @@ model CustomerVisitMeasurement{
   head                String?
   oc                  String?
   hr                  String?
-  tecnic_id           String?
+  tecnic              String?
   servicePerformed    String?
   observation         String?
 
