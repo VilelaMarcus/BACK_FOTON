@@ -1,4 +1,5 @@
 require('dotenv').config();
+import serverless from 'serverless-http';
 import express, { Response } from 'express';
 import cors from 'cors';
 import validateEnv from './utils/validateEnv';
@@ -25,7 +26,7 @@ async function bootstrap() {
   app.use('/custumerMeasurement', visitMeasurementRouter);
   
 
-  const port = 3005;
+  const port = process.env.PORT;
   app.listen(port, () => {
     console.log(`Server on port: ${port}`);
   });
@@ -34,8 +35,12 @@ async function bootstrap() {
 bootstrap()
   .catch((err) => {
     throw err;
-  })
+})
   .finally(async () => {
     await prisma.$disconnect();
-  });
+});
 
+const handler = serverless(app)
+export { handler }
+
+export default app;

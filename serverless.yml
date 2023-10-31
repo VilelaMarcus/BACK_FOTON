@@ -1,0 +1,61 @@
+service: foton
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: us-east-1
+  tags:
+    platform: 'foton'
+            
+functions:
+  api:
+    handler: dist/app.handler
+    timeout: 300
+    layers:
+      - { Ref: PrismaLambdaLayer }
+    events:
+      - httpApi: '*'
+    environment:
+      PORT: ${env:PORT}
+      DATABASE_URL: ${env:DATABASE_URL}
+
+useDotenv: true
+
+plugins:
+  - serverless-webpack-prisma
+  - serverless-dotenv-plugin
+
+custom:
+  webpack:
+    includeModules: true
+  scriptable:
+    hooks:
+      'package:initialize': 'sh ./ci/create-prisma-layer.sh'
+layers:
+  prisma:
+    path: .prisma-layer
+    description: 'Layer for Prisma Clients'
+    package:
+      patterns:
+        - '!nodejs/node_modules/@prisma/engines/*'
+        - '!nodejs/node_modules/.prisma/**/libquery_engine-*'
+        - 'nodejs/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node'
+        - '!nodejs/prisma/**'
+        - 'nodejs/prisma/*.db'
+
+package:
+  patterns:
+    - '!node_modules/.cache'
+    - '!node_modules/serverless'
+    - '!node_modules/prisma'
+    - '!node_modules/.prisma'
+    - '!node_modules/@prisma'
+    - '!.prisma-layer'
+    - '!prisma'
+    - '!ci'
+    - '!*.*'
+    - '!.env'
+    - '!src'
+    - 'app.js'
