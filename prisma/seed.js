@@ -49,287 +49,215 @@ const users = [
 const Customer = [
     {
         id: 'db4a4eb1-bdf1-42e6-8f72-567028b59102',
-        custumer_name: 'Almenara',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: 'c5963610-b2c3-4bcb-9e73-9f340bad427a',
-        custumer_name: 'Aracaju CEVISE',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '812c280e-8c26-4432-b141-dba53e8e4f88',
-        custumer_name: 'Aracju HOS',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '6be6911b-0eee-4694-bd55-fe11b0002bdd',
-        custumer_name: 'Aracruz',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '11930276-8339-440a-a25c-1003285e6c1d',
-        custumer_name: 'Araguaina',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: 'c6e42d7d-c9d4-4004-8fd3-61be6d63110c',
-        custumer_name: 'Balneario',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: 'd515cd58-220b-43c5-839a-d4df00e4b21a',
-        custumer_name: 'Barbacena',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: 'b8becd99-9cbe-4acd-8767-ceb0cc25919b',
-        custumer_name: 'Bauru',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: 'a11f09fa-3144-4579-bb7c-1bfd63c8b0b5',
-        custumer_name: 'Belem',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '76a43b73-7fee-4986-a45b-344769dea9f4',
-        custumer_name: 'Betim',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '22f81ca2-6973-4de3-8973-dec46f07b790',
-        custumer_name: 'Brasília ISOB',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: 'c86fe2b0-6478-4412-a90c-f8b76f88e49d',
-        custumer_name: 'Cabo Frio',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '03ec1541-3fc8-4420-8788-5e628d511f84',
-        custumer_name: 'Vancouver',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '700e37de-e030-462a-b8ca-1c88f93db35e',
-        custumer_name: 'Renton',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '10b3c35e-a4b0-4652-a8b2-9c38d18ba583',
-        custumer_name: 'Porto Alegre',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '2e9f772c-be94-448b-a53f-c59a1cde711f',
-        custumer_name: 'Curitiba',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: 'ce0d2515-7a00-4d79-a102-19d99af88ffd',
-        custumer_name: 'Cachoeira do Sul',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },{
         id: 'faf8f5d3-e42f-4602-b0e4-b5d0bb82ce1d',
-        custumer_name: 'João Pessoa',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },{
         id: 'e34d5e48-a094-461a-9d6d-1c06ff7a0e51',
-        custumer_name: 'Santo Ângelo',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },{
         id: '757e5965-d338-47cc-b530-0b9634169fc7',
-        custumer_name: 'Piracicaba',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },{
         id: '2373b3c5-8823-4033-8c55-50baab2c35c7',
-        custumer_name: 'Boa Vista /IOB',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '9ddd3ed0-119c-4732-bbca-ea9ad02ab612',
-        custumer_name: 'Cascavel',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '9f98df7a-6f1d-41b9-80af-26de62d4ed6b',
-        custumer_name: 'Manaus',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '2d233aec-868b-40a3-b191-23ad1a467da5',
-        custumer_name: 'Aracaju',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: 'c44f9d3c-164e-4dcd-a5b6-3ba3120778c4',
-        custumer_name: 'Belém',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '9478e808-5230-4fa6-9156-40a17e0eaa15',
-        custumer_name: 'Boa Vista',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: 'f4b73b30-8052-40d7-ad35-e0a3e5f52aa0',
-        custumer_name: 'Imperatriz',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '0c4093d0-5734-4ddf-a586-f98bb7d412a8',
-        custumer_name: 'Passo Fundo',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '254d4433-b103-4edb-a626-dd01e094295d',
-        custumer_name: 'Recife',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '7f60b108-f493-4f60-ab04-e1f471145b3f',
-        custumer_name: 'Rio Branco',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '84c3b595-2c4e-4443-8561-99b653c9b780',
-        custumer_name: 'Rio Grande',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: 'c54be1a0-59bd-4467-a12d-c9c71a5b9319',
-        custumer_name: 'Santa Maria',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '8264b4b0-fca0-4b73-860b-9a165bed34c0',
-        custumer_name: 'São Carlos',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '21442bcc-c60c-48ba-88a7-ff3a5d16eabd',
-        custumer_name: 'SP Renato Neves',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '06cebb1b-61b0-48d1-87a7-28cab326040a',
-        custumer_name: 'Sapucaia',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
     {
         id: '98eecc4c-64d9-4391-a719-e2fe24131b5d',
-        custumer_name: 'Xanxerê',
-        owner: "",
-        email: "",
-        logoUrl: "",
-        address: ""
+        owner: "Rock",
+        email: "rock@email.com",
+        logoUrl: ""
     },
 ];
 
@@ -359,6 +287,11 @@ const Lasers = [
         laser_name: 'Intralaser',
         brand: "Alcon"
     },
+    {
+        id: 'f34r5104-59f4-4d92-ae8d-7601a4959441',
+        laser_name: 'Internacional',
+        brand: "Alcon"
+    },
 ];
 
 
@@ -366,169 +299,279 @@ const laserOfCustomer = [
     {
         id: '573a0bd2-b6be-4b97-b4d4-471f5be5a125',
         laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        customer_id: 'db4a4eb1-bdf1-42e6-8f72-567028b59102'
+        customer_id: 'db4a4eb1-bdf1-42e6-8f72-567028b59102',
+        address: 'Rua caxias, 222',
+        customer_name: 'Almenara',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: 'f2cc6b43-17ff-40ea-8070-4089c0e0a003',
         laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        customer_id: 'c5963610-b2c3-4bcb-9e73-9f340bad427a'
+        customer_id: 'c5963610-b2c3-4bcb-9e73-9f340bad427a',
+        address: 'Rua caxias, 222',
+        customer_name: 'Aracaju CEVISE',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '917cafc3-9dfd-400e-86b6-8ceef1840499',
         laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        customer_id: '812c280e-8c26-4432-b141-dba53e8e4f88'
+        customer_id: '812c280e-8c26-4432-b141-dba53e8e4f88',
+        address: 'Rua caxias, 222',
+        customer_name: 'Aracju HOS',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: 'c462db15-864f-474f-ba70-0a47a3d23159',
-        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        customer_id: '6be6911b-0eee-4694-bd55-fe11b0002bdd'
-    },
-    {
-        id: '58ea7a32-232a-407a-9303-95a240d49df8',
-        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',        
         customer_id: '11930276-8339-440a-a25c-1003285e6c1d',
+        customer_name: 'Aracruz',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '995d4997-0166-416f-b5fb-994238bc9431',
         laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
         customer_id: 'c6e42d7d-c9d4-4004-8fd3-61be6d63110c',
+        customer_name: 'Balneario',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: 'd993ea9f-474e-498a-af79-bacdc80b61a3',
         laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        customer_id: 'd515cd58-220b-43c5-839a-d4df00e4b21a'
+        customer_id: 'd515cd58-220b-43c5-839a-d4df00e4b21a',
+        customer_name: 'Bauru',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '765a5355-d02d-481e-869a-b72826164c25',
         laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        customer_id: 'b8becd99-9cbe-4acd-8767-ceb0cc25919b'
+        customer_id: 'b8becd99-9cbe-4acd-8767-ceb0cc25919b',
+        customer_name: 'Belem',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '533fefa7-23c2-4390-8579-52947008b33c',
         laser_id: 'f32be104-59f4-4d92-ae8d-7601a4959441',
         customer_id: '03ec1541-3fc8-4420-8788-5e628d511f84',
+        customer_name: 'Betim',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '24de6adb-1e52-4d86-a298-242cf3f3ee53',
         laser_id: 'f32be104-59f4-4d92-ae8d-7601a4959441',
         customer_id: '700e37de-e030-462a-b8ca-1c88f93db35e',
+        customer_name: 'Brasília ISOB',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: 'f611782a-d5d9-48f2-8edb-851f6abb2658',
         laser_id: 'f32be104-59f4-4d92-ae8d-7601a4959441',
         customer_id: '10b3c35e-a4b0-4652-a8b2-9c38d18ba583',
+        customer_name: 'Cabo Frio',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: 'd2ecd42e-9be3-4bb8-be8f-252960dad0a1',
         laser_id: 'f32be104-59f4-4d92-ae8d-7601a4959441',
         customer_id: '2e9f772c-be94-448b-a53f-c59a1cde711f',
+        customer_name: 'Vancouver',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '32c87b6d-ae1a-4d52-aabc-29251edaddf0',
         laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
         customer_id: 'ce0d2515-7a00-4d79-a102-19d99af88ffd',
+        customer_name: 'Renton',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '063d3a13-29d9-4f37-a157-554520adffda',
         laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
         customer_id: 'e34d5e48-a094-461a-9d6d-1c06ff7a0e51',
+        customer_name: 'Porto Alegre',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: 'd9246295-2b43-4a1e-989d-d5545ca91510',
         laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
         customer_id: 'faf8f5d3-e42f-4602-b0e4-b5d0bb82ce1d',
+        customer_name: 'Curitiba',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '0ee973e2-3be5-4781-ae69-4004266ed2c9',
         laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
         customer_id: '757e5965-d338-47cc-b530-0b9634169fc7',
+        customer_name: 'Cachoeira do Sul',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '17e8f9c9-7e12-47ab-99d2-99a7237c7093',
         laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
         customer_id: '2373b3c5-8823-4033-8c55-50baab2c35c7',
+        customer_name: 'João Pessoa',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: 'bbdd8ee5-ec0b-48cb-becf-7f41eb337a30',
         laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
         customer_id: '9ddd3ed0-119c-4732-bbca-ea9ad02ab612',
+        customer_name: 'Santo Ângelo',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: 'a77f96e0-01bc-4b82-bcd9-e47167f4abf8',
         laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
         customer_id: '9f98df7a-6f1d-41b9-80af-26de62d4ed6b',
+        customer_name: 'Piracicaba',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '6ebfff8c-f681-4767-922c-301f92b268cf',
         laser_id: 'eecff469-0f53-4cc1-86cb-450b87cef08e',
         customer_id: '2d233aec-868b-40a3-b191-23ad1a467da5',
+        customer_name: 'Cascavel',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '63502145-acc1-45ed-aadd-3a168462fbac',
         laser_id: 'eecff469-0f53-4cc1-86cb-450b87cef08e',
         customer_id: 'c44f9d3c-164e-4dcd-a5b6-3ba3120778c4',
+        customer_name: 'Boa Vista /IOB',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: 'c9e9d54a-81cf-447c-92a1-28ef5920e8b6',
         laser_id: 'eecff469-0f53-4cc1-86cb-450b87cef08e',
         customer_id: '9478e808-5230-4fa6-9156-40a17e0eaa15',
+        customer_name: 'Manaus',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '0031c5ba-76ee-469b-9a26-189deb6769b4',
         laser_id: 'eecff469-0f53-4cc1-86cb-450b87cef08e',
         customer_id: 'f4b73b30-8052-40d7-ad35-e0a3e5f52aa0',
+        customer_name: 'Imperatriz',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '9dfbb731-5b19-4b14-9dc2-45d597419596',
         laser_id: 'eecff469-0f53-4cc1-86cb-450b87cef08e',
         customer_id: '0c4093d0-5734-4ddf-a586-f98bb7d412a8',
+        customer_name: 'Passo Fundo',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: 'd5a23bd4-3eb9-4aef-9d5a-c0a8afa30d38',
         laser_id: 'eecff469-0f53-4cc1-86cb-450b87cef08e',
         customer_id: '254d4433-b103-4edb-a626-dd01e094295d',
+        customer_name: 'Recife',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '88521922-e2d7-4a0a-b4e0-da38d0ae635f',
         laser_id: 'eecff469-0f53-4cc1-86cb-450b87cef08e',
         customer_id: '7f60b108-f493-4f60-ab04-e1f471145b3f',
+        customer_name: 'Rio Branco',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '04f38626-ac91-4424-ab08-2f53247f21b0',
         laser_id: 'eecff469-0f53-4cc1-86cb-450b87cef08e',
         customer_id: '84c3b595-2c4e-4443-8561-99b653c9b780',
+        customer_name: 'Rio Grande',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '7a5053e1-bd9d-4cad-a5e7-ce9d5c4b634f',
         laser_id: 'eecff469-0f53-4cc1-86cb-450b87cef08e',
         customer_id: 'c54be1a0-59bd-4467-a12d-c9c71a5b9319',
+        customer_name: 'Santa Maria',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: 'f3ee2a9a-9ddd-4ea8-b3bd-8f28cfe94b13',
         laser_id: 'eecff469-0f53-4cc1-86cb-450b87cef08e',
         customer_id: '8264b4b0-fca0-4b73-860b-9a165bed34c0',
+        customer_name: 'SP Renato Neves',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: 'a5177bf1-13f6-485c-ad4b-a874878a6088',
         laser_id: 'eecff469-0f53-4cc1-86cb-450b87cef08e',
         customer_id: '21442bcc-c60c-48ba-88a7-ff3a5d16eabd',
+        customer_name: 'Xanxerê',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
     {
         id: '1099fbeb-e3d3-4c8d-b56b-d340a980a1f7',
         laser_id: 'eecff469-0f53-4cc1-86cb-450b87cef08e',
         customer_id:  '06cebb1b-61b0-48d1-87a7-28cab326040a',
-    },
-    {
-        id: 'a277ce7f-d23d-40a9-a35e-78ab8f035f97',
-        laser_id: 'eecff469-0f53-4cc1-86cb-450b87cef08e',
-        customer_id: '98eecc4c-64d9-4391-a719-e2fe24131b5d',
+        customer_name: 'Sapucaia',
+        address: 'Rua caxias, 222',
+        city: 'Almenara',
+        zip_code: '222234-890'
     },
 ];
 
 
 const CustomerVisitMaesurement = [
     {
-        id: 'db4a4eb1-bdf1-42e6-8f72-567028b59102',
+        id: 'db4a4eb1-bdf1-42e6-8f72-567028b59902',
         date: '13/06/2023',            
         unresolvedDefect:'LCD com mancha central, muito ruim',
         oph: '261',             

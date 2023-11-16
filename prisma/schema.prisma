@@ -10,14 +10,10 @@ datasource db {
 
 model Customer{
   id String  @id @default(uuid())
-  custumer_name       String?  
   owner               String? 
   email               String?
   logoUrl             String?
-  address             String?
-  city                String?
-  zip_code            String?
-  
+
   laserOfCustomer   LaserOfCustomer[]
 }
 
@@ -41,15 +37,20 @@ model Laser{
 }
 
 
-model LaserOfCustomer{
-  id String     @id @default(uuid())
-  laser_id       String
-  customer_id    String
-  customerVisitMeasurements CustomerVisitMeasurement[] 
+model LaserOfCustomer {
+  id String @id @default(uuid())
+  laser_id String
+  customer_id String
 
+
+  address String?
+  customer_name String?
+  city String?
+  zip_code String?
+  customerVisitMeasurements CustomerVisitMeasurement[]
 
   laser Laser @relation(fields: [laser_id], references: [id])
-  custumer Customer @relation(fields: [customer_id], references: [id])
+  customer Customer @relation(fields: [customer_id], references: [id])
 }
 
 

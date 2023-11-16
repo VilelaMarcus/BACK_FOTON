@@ -22,6 +22,8 @@ const getVisitMeasurmentCustumerByCustomerIdHandler: ApiHandler = async ({ reque
       WHERE c.id = ${id};
   `;
 
+  console.log({visitMeasurement});
+
   if (visitMeasurement === null) {
     throw new HttpError(404, 'Not found');
   }

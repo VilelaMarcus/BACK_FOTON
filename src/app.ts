@@ -2,14 +2,13 @@ require('dotenv').config();
 import serverless from 'serverless-http';
 import express, { Response } from 'express';
 import cors from 'cors';
-import validateEnv from './utils/validateEnv';
 import { PrismaClient } from '@prisma/client';
-import redisClient from './utils/connectRedis';
 import userRoute from './routes/user-routes';
 import laserRouter from './routes/laser-routes';
 import customerRouter from './routes/custumer-routes';
 import visitMeasurementRouter from './routes/custumer-visit-measurement-routes';
 import dashboadRouter from './routes/dashboard-routes';
+import laserOfCustomer from './routes/laser-of-customer-routes';
 
 
 const prisma = new PrismaClient();
@@ -23,6 +22,7 @@ async function bootstrap() {
   app.use('/dashboard', dashboadRouter);
   app.use('/laser', laserRouter);
   app.use('/customer', customerRouter);
+  app.use('/laserOfCustomer', laserOfCustomer);
   app.use('/custumerMeasurement', visitMeasurementRouter);
   
 

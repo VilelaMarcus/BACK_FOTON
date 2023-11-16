@@ -4,13 +4,9 @@ CREATE TYPE "GalvoStatus" AS ENUM ('OK', 'MEDIO', 'RUIM');
 -- CreateTable
 CREATE TABLE "Customer" (
     "id" TEXT NOT NULL,
-    "custumer_name" TEXT,
     "owner" TEXT,
     "email" TEXT,
     "logoUrl" TEXT,
-    "address" TEXT,
-    "city" TEXT,
-    "zip_code" TEXT,
 
     CONSTRAINT "Customer_pkey" PRIMARY KEY ("id")
 );
@@ -41,6 +37,10 @@ CREATE TABLE "LaserOfCustomer" (
     "id" TEXT NOT NULL,
     "laser_id" TEXT NOT NULL,
     "customer_id" TEXT NOT NULL,
+    "address" TEXT,
+    "customer_name" TEXT,
+    "city" TEXT,
+    "zip_code" TEXT,
 
     CONSTRAINT "LaserOfCustomer_pkey" PRIMARY KEY ("id")
 );
