@@ -8,37 +8,36 @@ const createCustumerHandler: ApiHandler = async ({ request, response }) => {
 
   const { 
     id,  
-    custumer_name,   
+    custumer_name,  
+    laser_name, 
     owner,  
     email, 
     logoUrl, 
     address, 
     city, 
-    zip_code,   
-    laserOfCustomer
+    zip_code,
   } = request.body || '';
 
   if (!id) {
     throw new HttpError(404, 'Not found');
   }
 
+
   const data = {
     ...(id && { id }),          
-    ...(custumer_name && { custumer_name }),          
+    ...(custumer_name && { custumer_name }),        
     ...(owner && { owner }),          
     ...(email && { email }),          
-    ...(address && { address }),          
+    ...(address && { address }),                   
   };
 
-  console.log(data);
+  const result = await prisma.customer.create({
+    data: data,
+  });
 
-  // const result = await prisma.customer.create({
-  //   data: data,
-  // });
 
-  
-  await prisma.$disconnect();
-  response.status(200).json();
+ await prisma.$disconnect();
+  response.status(200).json(result);
 };
 
 export default createCustumerHandler;
