@@ -3,15 +3,14 @@ import { PrismaClient } from '@prisma/client';
 import { HttpError } from '../../utils/errors';
 import { ApiHandler } from '../../utils/types';
 
-const createCustumerHandler: ApiHandler = async ({ request, response }) => {
+const createNewEquipmenteToClient: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
 
   const { 
     id,  
-    custumer_name,  
-    owner,  
-    email, 
-    logoUrl, 
+    customer_name, 
+    laser_id, 
+    customer_id, 
     address, 
     city, 
     zip_code,
@@ -21,15 +20,22 @@ const createCustumerHandler: ApiHandler = async ({ request, response }) => {
     throw new HttpError(404, 'Not found');
   }
 
+  console.log(request.body);
+
 
   const data = {
-    ...(id && { id }),                 
-    ...(owner && { owner }),          
-    ...(email && { email }),          
+    ...(id && { id }),                
+    ...(customer_name && { customer_name }),                   
+    ...(laser_id && { laser_id }),                   
+    ...(customer_id && { customer_id }),                   
+    ...(city && { city }),                   
     ...(address && { address }),                   
+    ...(zip_code && { zip_code }),                   
   };
 
-  const result = await prisma.customer.create({
+  console.log({data})
+
+  const result = await prisma.laserOfCustomer.create({
     data: data,
   });
 
@@ -38,4 +44,4 @@ const createCustumerHandler: ApiHandler = async ({ request, response }) => {
   response.status(200).json(result);
 };
 
-export default createCustumerHandler;
+export default createNewEquipmenteToClient;

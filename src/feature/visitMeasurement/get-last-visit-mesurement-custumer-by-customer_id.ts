@@ -6,7 +6,7 @@ import { ApiHandler, VisitMeasurementItem } from '../../utils/types';
 
 
 
-const getVisitMeasurmentCustumerByCustomerIdHandler: ApiHandler = async ({ request, response }) => {
+const getLastVisitMeasurmentCustumerByCustomerIdHandler: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
 
   const { id } = request.params;
@@ -15,11 +15,13 @@ const getVisitMeasurmentCustumerByCustomerIdHandler: ApiHandler = async ({ reque
 
   const visitMeasurement = await prisma.$queryRaw<VisitMeasurementItem[]>`
     SELECT *
-      FROM public."LaserOfCustomer" loc
-      JOIN public."Customer" c ON loc.customer_id = c.id
-      JOIN public."Laser" l ON loc.laser_id = l.id
-      JOIN public."CustomerVisitMeasurement" m ON loc.id = m.laser_of_customer_id
-      WHERE loc.id = ${id};
+    FROM public."LaserOfCustomer" loc
+    JOIN public."Customer" c ON loc.customer_id = c.id
+    JOIN public."Laser" l ON loc.laser_id = l.id
+    JOIN public."CustomerVisitMeasurement" m ON loc.id = m.laser_of_customer_id
+    WHERE c.id = ${id}
+    ORDER BY TO_DATE(m.date, 'DD/MM/YYYY') DESC
+    LIMIT 1;
   `;
 
   console.log({visitMeasurement});
@@ -33,4 +35,4 @@ const getVisitMeasurmentCustumerByCustomerIdHandler: ApiHandler = async ({ reque
   response.status(200).json(visitMeasurement);
 };
 
-export default getVisitMeasurmentCustumerByCustomerIdHandler;
+export default getLastVisitMeasurmentCustumerByCustomerIdHandler;

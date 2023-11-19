@@ -13,14 +13,14 @@ const prisma = new PrismaClient();
 const users = [
     {
       id: '24de6adb-1e52-4d86-a298-242cf3f3ee53',
-      email: 'fabio.vilela@gmail.com',
+      email: 'favilela@gmail.com',
       tecnic_name: 'Fabio Vilela',
       role: "CEO",
       password: "pendra9356"
     },
     {
         id: 'f3a40006-c2c8-4834-97a9-519ef2429ad3',
-        email: 'edmir.vilela@gmail.com',
+        email: 'edmirvb@gmail.com',
         tecnic_name: 'Edmir Vilela',
         verified: true,
         role: "Tecnico",
@@ -28,19 +28,26 @@ const users = [
     },
     {
         id: 'abf12498-60aa-4f7b-aa55-7e5648531889',
-        email: 'evaldo.vilela@gmail.com',
+        email: 'e13vilela@gmail.com',
         tecnic_name: 'Evaldo Vilela',
         verified: true,
         role: "Tecnico",
         password: "pendra9356"
-    },
-    
+    },    
     {
         id: 'e55ef4a3-6641-4349-820c-ac50ea5687b9',
-        email: 'denildo.algo@gmail.com',
+        email: 'denildocsilva@gmail.com',
         tecnic_name: 'Denildo',
         verified: true,
         role: "Tecnico",
+        password: "pendra9356"
+    },
+    {        
+        id: 'e55ef4a3-6641-6575-820c-ac50er5687b9',
+        email: 'fotontecnologia@gmail.com',
+        tecnic_name: 'FOTON',
+        verified: true,
+        role: "ADM",
         password: "pendra9356"
     },
 ];
@@ -55,98 +62,98 @@ const Customer = [
     },
     {
         id: 'c5963610-b2c3-4bcb-9e73-9f340bad427a',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "Afonso",
+        email: "afonso@email.com",
         logoUrl: ""
     },
     {
         id: '812c280e-8c26-4432-b141-dba53e8e4f88',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "Gean",
+        email: "Gean@email.com",
         logoUrl: ""
     },
     {
         id: '6be6911b-0eee-4694-bd55-fe11b0002bdd',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "Patrick",
+        email: "patrick@email.com",
         logoUrl: ""
     },
     {
         id: '11930276-8339-440a-a25c-1003285e6c1d',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "Renato",
+        email: "renato@email.com",
         logoUrl: ""
     },
     {
         id: 'c6e42d7d-c9d4-4004-8fd3-61be6d63110c',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "Amadeus",
+        email: "amadeus@email.com",
         logoUrl: ""
     },
     {
         id: 'd515cd58-220b-43c5-839a-d4df00e4b21a',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "Diogo",
+        email: "Diogo@email.com",
         logoUrl: ""
     },
     {
         id: 'b8becd99-9cbe-4acd-8767-ceb0cc25919b',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "Jose",
+        email: "Jose@email.com",
         logoUrl: ""
     },
     {
         id: 'a11f09fa-3144-4579-bb7c-1bfd63c8b0b5',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "Matheus",
+        email: "Matheus@email.com",
         logoUrl: ""
     },
     {
         id: '76a43b73-7fee-4986-a45b-344769dea9f4',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "Adelina",
+        email: "Adelina@email.com",
         logoUrl: ""
     },
     {
         id: '22f81ca2-6973-4de3-8973-dec46f07b790',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "Renato",
+        email: "Renato@email.com",
         logoUrl: ""
     },
     {
         id: 'c86fe2b0-6478-4412-a90c-f8b76f88e49d',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "Nayara",
+        email: "nayara@email.com",
         logoUrl: ""
     },
     {
         id: '03ec1541-3fc8-4420-8788-5e628d511f84',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "Italo",
+        email: "italo@email.com",
         logoUrl: ""
     },
     {
         id: '700e37de-e030-462a-b8ca-1c88f93db35e',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "gean",
+        email: "gean@email.com",
         logoUrl: ""
     },
     {
         id: '10b3c35e-a4b0-4652-a8b2-9c38d18ba583',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "Ronaldo",
+        email: "ronaldo@email.com",
         logoUrl: ""
     },
     {
         id: '2e9f772c-be94-448b-a53f-c59a1cde711f',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "paula",
+        email: "paula@email.com",
         logoUrl: ""
     },
     {
         id: 'ce0d2515-7a00-4d79-a102-19d99af88ffd',
-        owner: "Rock",
-        email: "rock@email.com",
+        owner: "terense",
+        email: "terense@email.com",
         logoUrl: ""
     },{
         id: 'faf8f5d3-e42f-4602-b0e4-b5d0bb82ce1d',
@@ -317,10 +324,10 @@ const laserOfCustomer = [
     {
         id: '917cafc3-9dfd-400e-86b6-8ceef1840499',
         laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
-        customer_id: '812c280e-8c26-4432-b141-dba53e8e4f88',
+        customer_id: 'db4a4eb1-bdf1-42e6-8f72-567028b59102',
         address: 'Rua caxias, 222',
         customer_name: 'Aracju HOS',
-        city: 'Almenara',
+        city: 'Aracju HOS',
         zip_code: '222234-890'
     },
     {
@@ -371,7 +378,7 @@ const laserOfCustomer = [
     {
         id: '24de6adb-1e52-4d86-a298-242cf3f3ee53',
         laser_id: 'f32be104-59f4-4d92-ae8d-7601a4959441',
-        customer_id: '700e37de-e030-462a-b8ca-1c88f93db35e',
+        customer_id: 'c6e42d7d-c9d4-4004-8fd3-61be6d63110c',
         customer_name: 'Brasília ISOB',
         address: 'Rua caxias, 222',
         city: 'Almenara',

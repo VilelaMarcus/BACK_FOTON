@@ -2,9 +2,13 @@ import { Router } from 'express';
 
 import createRoute from '../middleware/create-route';
 import getLaserOfCustumerHandler from '../feature/laserOfCostumer/get-laser-of-costumer-handler';
+import getLaserOfCustumerByIdHandler from '../feature/laserOfCostumer/get-laser-of-costumer-handler-by-custome_id';
+import createNewEquipmenteToClient from '../feature/laserOfCostumer/create-laser-of-customer-handler';
 
-const laserOfCustomer = Router();
+const laserOfCustomerRouter = Router();
 
-laserOfCustomer.get('/',  createRoute(getLaserOfCustumerHandler));
+laserOfCustomerRouter.get('/',  createRoute(getLaserOfCustumerHandler));
+laserOfCustomerRouter.post('/',  createRoute(createNewEquipmenteToClient));
+laserOfCustomerRouter.get('/:id', createRoute(getLaserOfCustumerByIdHandler));
 
-export default laserOfCustomer;
+export default laserOfCustomerRouter;
