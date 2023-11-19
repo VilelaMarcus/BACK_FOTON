@@ -19,7 +19,7 @@ const getLastVisitMeasurmentCustumerByCustomerIdHandler: ApiHandler = async ({ r
     JOIN public."Customer" c ON loc.customer_id = c.id
     JOIN public."Laser" l ON loc.laser_id = l.id
     JOIN public."CustomerVisitMeasurement" m ON loc.id = m.laser_of_customer_id
-    WHERE c.id = ${id}
+    WHERE loc.id = ${id}
     ORDER BY TO_DATE(m.date, 'DD/MM/YYYY') DESC
     LIMIT 1;
   `;
