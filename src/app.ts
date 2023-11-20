@@ -10,6 +10,7 @@ import visitMeasurementRouter from './routes/custumer-visit-measurement-routes';
 import dashboadRouter from './routes/dashboard-routes';
 import laserOfCustomerRouter from './routes/laser-of-customer-routes';
 import laserCustomerRouter from './routes/laser-costumer-routes';
+import osROuter from './routes/os-routes';
 
 
 const prisma = new PrismaClient();
@@ -24,6 +25,7 @@ async function bootstrap() {
   app.use('/laser', laserRouter);
   app.use('/customer', customerRouter);
   app.use('/laserAndCostumer', laserCustomerRouter);
+  app.use('/os', osROuter);
   app.use('/laserOfCustomer', laserOfCustomerRouter);
   app.use('/custumerMeasurement', visitMeasurementRouter);
   

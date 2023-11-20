@@ -1,6 +1,9 @@
 -- CreateEnum
 CREATE TYPE "GalvoStatus" AS ENUM ('OK', 'MEDIO', 'RUIM');
 
+-- CreateEnum
+CREATE TYPE "OsType" AS ENUM ('ChekBox', 'Text', 'Outro');
+
 -- CreateTable
 CREATE TABLE "Customer" (
     "id" TEXT NOT NULL,
@@ -105,6 +108,16 @@ CREATE TABLE "CustomerVisitMeasurement" (
     "laser_of_customer_id" TEXT NOT NULL,
 
     CONSTRAINT "CustomerVisitMeasurement_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "OS" (
+    "id" TEXT NOT NULL,
+    "laser_id" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "type" "OsType" NOT NULL,
+
+    CONSTRAINT "OS_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex

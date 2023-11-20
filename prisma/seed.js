@@ -1312,34 +1312,38 @@ const OS = [
 
 async function main() {
     
+    await prisma.oS.createMany({
+        data: OS,
+    });
+
     await prisma.user.createMany({
-      data: users,
+        data: users,
     });
 
     await prisma.customer.createMany({
-      data: Customer,
+        data: Customer,
     });
 
     await prisma.laser.createMany({
-      data: Lasers,
+        data: Lasers,
     });
 
     await prisma.laserOfCustomer.createMany({
-      data: laserOfCustomer,
+        data: laserOfCustomer,
     });
-  
+
     await prisma.customerVisitMeasurement.createMany({
-      data: CustomerVisitMaesurement,
+        data: CustomerVisitMaesurement,
     });
 }
-  
-  main()
+
+main()
     .then(async () => {
-      await prisma.$disconnect();
+    await prisma.$disconnect();
     })
     .catch(async error => {
-      console.log('error seeding', error);
-      await prisma.$disconnect();
-      process.exit(1);
-    });
-  
+        console.log('error seeding', error);
+        await prisma.$disconnect();
+        process.exit(1);
+});
+
