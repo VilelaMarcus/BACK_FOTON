@@ -295,8 +295,13 @@ const Lasers = [
         brand: "Alcon"
     },
     {
-        id: 'f34r5104-59f4-4d92-ae8d-7601a4959441',
+        id: 'f34r4564-59f4-4d92-ae8d-7601a4959441',
         laser_name: 'Internacional',
+        brand: "Alcon"
+    },
+    {
+        id: 'drg5r5104-59f4-4d92-ae8d-7601a4959441',
+        laser_name: 'FacoEmulsificador Ifiniti',
         brand: "Alcon"
     },
 ];
@@ -1083,6 +1088,225 @@ const CustomerVisitMaesurement = [
     //     observation:'',           
     //     laser_of_customer_id: '533fefa7-23c2-4390-8579-52947008b33c',  
     // },
+];
+
+const OS = [
+        {
+        id: '419037a8-2208-48ce-be78-db30fe3a2957',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Conectar computador a cabeça de laser',
+        type: 'ChekBox',
+        },
+        {
+        id: 'b28e472b-5be8-4413-a508-cab437228930',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Verificar se há vazamento na linha',
+        type: 'ChekBox',
+        },
+        {
+        id: 'bea67f72-147c-4f5f-9127-b3a2f681acb5',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Pressão antes do solenóide de alta pressão',
+        type: 'ChekBox',
+        },
+        {
+        id: 'd2fe7069-825d-414a-acfd-73b5ecaf4162',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Verificar funcionamento do solenóide de alta pressão',
+        type: 'ChekBox',
+        },
+        {
+        id: '40a3d33e-7c2a-4121-b392-39b4ef8fdfc8',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Verificar se há vazamento na linha do Nitrogênio e se há fluxo normal',
+        type: 'ChekBox',
+        },
+        {
+        id: '228e687f-b6c6-444e-bf46-7c7c8e0dd4b1',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Pressão nominal do cilindro em bar',
+        type: 'Text',
+        },
+        {
+        id: 'd7ebafbc-0a5f-461a-8751-c725f52cb3da',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Horas de uso da máquina',
+        type: 'Text',
+        },
+        {
+        id: '6e863f3b-82bc-4d53-a77f-131de6c1d6f5',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Número de cirurgias realizadas:',
+        type: 'Text',
+        },
+        {
+        id: 'e75afcb4-b990-4711-b27d-d10008069982',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Quantas trocas já foram feitas com este cilindro?',
+        type: 'Text',
+        },
+        {
+        id: '55942b24-b254-4ee3-a861-b2e13ed5f8b6',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Cálculo de consumo de gás por número de trocas está correto?',
+        type: 'Text',
+        },
+        {
+        id: '975c4540-a019-4405-b23d-370d8ac72be5',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Quantos dias desde que foi feita a última troca de gás?',
+        type: 'Text',
+        },
+        {
+        id: '1acbed3c-6c5a-48bf-987d-574feba0e686',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Energia máxima com o primeiro gás:',
+        type: 'Text',
+        },
+        {
+        id: '2c20ffcd-88c8-4e2a-bfe5-80f24a8e4644',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'V do energy check com primeiro gás:',
+        type: 'Text',
+        },
+        {
+        id: '3f7c963f-0a27-4f3a-87c1-23e01c6dbedd',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Energia de trabalho no energy check:',
+        type: 'Text',
+        },
+        {
+        id: '27b82677-6719-4f97-a6f1-94ef87438cc8',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Energia máxima com o segundo gás:',
+        type: 'Text',
+        },
+        {
+        id: 'ac89a31c-cf67-42f4-85c9-8ea080e7c32b',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'V do energy check com o segundo gás:',
+        type: 'Text',
+        },
+        {
+        id: '789c5378-2856-4913-bf4f-52eb1fa8587e',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Energia na saída da cavidade:',
+        type: 'Text',
+        },
+        {
+        id: 'f4d318d9-7c83-485b-95bd-9d8b64b23e13',
+        laser_id: 'aef8af7d-ae01-4f37-a74f-cabe537f6120',
+        description: 'Obs:',
+        type: 'Text',
+    },
+    {
+        id: '4bd2aa2c-348c-4a4d-ba77-b149f66d15b9',
+        laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
+        description: 'Verificação do sistema de fluidos',
+        type: 'ChekBox',
+    },
+{
+        id: '90c18f7a-eb3c-42d9-9ff5-9e7ef006a540',
+        laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
+        description: 'Verificação do sistema pneumático',
+        type: 'ChekBox',
+    },
+    {
+        id: '8f5588ac-d4f3-4c8e-8ea2-893cd7f8b891',
+        laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
+        description: 'Verificação do sistema de iluminação',
+        type: 'ChekBox',
+    },
+    {
+        id: 'dc8e60d5-927b-46b7-ae8d-90f1db1fcd6c',
+        laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
+        description: 'Verificação da sintonia de canetas',
+        type: 'ChekBox',
+    },
+    {
+        id: '92da33d3-26ad-4f48-98e4-8bb693b2de3d',
+        laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
+        description: 'Realização da calibração dos medidores',
+        type: 'ChekBox',
+    },
+    {
+        id: '04bc974b-54de-4a4c-a5da-6e6f9f3b7265',
+        laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
+        description: 'Quantidade de horas da lâmpada',
+        type: 'Text',
+    },
+    {
+        id: '94758a63-2d92-4aae-b1c4-dfc7e92b9e94',
+        laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
+        description: 'Verificação de defeitos eletrônicos',
+        type: 'Text',
+    },
+    {
+        id: 'b130e2e9-8195-48af-8ea8-9276e7bf7222',
+        laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
+        description: 'Revisão e calibragem geral',
+        type: 'ChekBox',
+    },
+    {
+        id: '793d9f9b-6c68-4d8b-8a6f-bf3e679ee5a0',
+        laser_id: '2f632212-a50a-4ecf-9418-49f7baf81565',
+        description: 'Obs',
+        type: 'Text',
+      },
+      {
+        id: '7bb0a3b3-1c6c-4a9f-bc49-9837866d2a95',
+        laser_id: 'drg5r5104-59f4-4d92-ae8d-7601a4959441',
+        description: 'Verificação de reconhecimento do cassete',
+        type: 'ChekBox',
+      },
+      {
+        id: 'e7c6c69f-7d57-4f1d-a77e-9d0a097f3721',
+        laser_id: 'drg5r5104-59f4-4d92-ae8d-7601a4959441',
+        description: 'Verificação do modo de fluidos (FMS)',
+        type: 'ChekBox',
+      },
+      {
+        id: 'ebdd05c8-598e-47f4-9a3d-2c66fcb8c65d',
+        laser_id: 'drg5r5104-59f4-4d92-ae8d-7601a4959441',
+        description: 'Verificação e calibração da peça de mão',
+        type: 'ChekBox',
+      },
+      {
+        id: '05e54e52-cb1b-4f7a-a87a-7504651c37ad',
+        laser_id: 'drg5r5104-59f4-4d92-ae8d-7601a4959441',
+        description: 'Verificação do modo pneumático',
+        type: 'ChekBox',
+      },
+      {
+        id: '99936c87-7a67-43a3-8b57-829f6db03115',
+        laser_id: 'drg5r5104-59f4-4d92-ae8d-7601a4959441',
+        description: 'Realização da calibração dos medidores',
+        type: 'ChekBox',
+      },
+      {
+        id: 'e9fb40b4-53d8-4df0-ae6b-9131b021bcae',
+        laser_id: 'drg5r5104-59f4-4d92-ae8d-7601a4959441',
+        description: 'Troca da bateria',
+        type: 'Text',
+      },
+      {
+        id: '4a679f94-f5c9-4e32-8f6b-b58bc4dd9b2b',
+        laser_id: 'drg5r5104-59f4-4d92-ae8d-7601a4959441',
+        description: 'Verificação de defeitos eletrônicos',
+        type: 'Text',
+      },
+      {
+        id: '71a2b348-ef8b-46c7-93f7-b1ef14fe27a1',
+        laser_id: 'drg5r5104-59f4-4d92-ae8d-7601a4959441',
+        description: 'Revisão e calibragem geral',
+        type: 'ChekBox',
+    },
+    {
+        id: '8b71da8b-6154-47e2-8aeb-3ebdebf76ff2',
+        laser_id: 'drg5r5104-59f4-4d92-ae8d-7601a4959441',
+        description: 'Obs',
+        type: 'Text',
+    }
 ];
 
 
