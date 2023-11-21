@@ -3862,7 +3862,7 @@ serve-static@1.15.0:
 
 serverless-dotenv-plugin@^6.0.0:
   version "6.0.0"
-  resolved "https://registry.npmjs.org/serverless-dotenv-plugin/-/serverless-dotenv-plugin-6.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/serverless-dotenv-plugin/-/serverless-dotenv-plugin-6.0.0.tgz#c3e0c2e7fb79641433497085eecc30fe150b5ca0"
   integrity sha512-8tLVNwHfDO0sBz6+m+DLTZquRk0AZq9rzqk3kphm1iIWKfan9R7RKt4hdq3eQ0kmDoqzudjPYBEXAJ5bUNKeGQ==
   dependencies:
     chalk "^4.1.2"

@@ -5,8 +5,8 @@ import { ApiHandler } from '../../utils/types';
 
 const getCustumerHandler: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
-  const customers = await prisma.customer.findMany();
 
+  const customers = await prisma.customer.findMany();
   
   if (customers === null) {
     throw new HttpError(404, 'Not found');
