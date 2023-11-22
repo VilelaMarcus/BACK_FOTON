@@ -38,7 +38,7 @@
     "start": "ts-node-dev --respawn --transpile-only --exit-child src/app.ts",
     "migrate": "npx prisma migrate dev --name user-entity && npx prisma generate",
     "push": "npx prisma db push",
-    "build": "set NODE_OPTIONS=--max_old_space_size=4096 && yarn run build:typescript",
+    "build": "set NODE_OPTIONS=--max_old_space_size=4096 && npm run build:typescript",
     "build:typescript": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
     "prisma:init": "prisma init",
     "prisma:migrate": "prisma migrate dev --preview-feature",
