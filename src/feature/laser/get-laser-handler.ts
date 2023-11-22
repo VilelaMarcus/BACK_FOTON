@@ -13,11 +13,7 @@ const getLaserHandler: ApiHandler = async ({ request, response }) => {
   }
 
   await prisma.$disconnect();
-  response.status(200).json({
-    lasers: {
-      ...lasers,
-    },
-  });
+  response.status(200).json(lasers);
 };
 
 export default getLaserHandler;
