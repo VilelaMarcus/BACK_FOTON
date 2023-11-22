@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { HttpError } from '../../utils/errors';
 import { ApiHandler } from '../../utils/types';
 
-const createVisitMeasurmentCustumerHandler: ApiHandler = async ({ request, response }) => {
+const createVisitMeasurmentCustomerHandler: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
 
   const { 
@@ -140,4 +140,4 @@ const createVisitMeasurmentCustumerHandler: ApiHandler = async ({ request, respo
   response.status(200).json(result);
 };
 
-export default createVisitMeasurmentCustumerHandler;
+export default createVisitMeasurmentCustomerHandler;

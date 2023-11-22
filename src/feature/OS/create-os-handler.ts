@@ -8,7 +8,7 @@ const createOsHandler: ApiHandler = async ({ request, response }) => {
 
   const { 
     id,  
-    custumer_name,  
+    customer_name,  
     owner,  
     email, 
     logoUrl, 

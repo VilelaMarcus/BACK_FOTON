@@ -6,7 +6,7 @@ import { ApiHandler, VisitMeasurementItem } from '../../utils/types';
 
 
 
-const getVisitMeasurmentCustumerByLaserNameHandler: ApiHandler = async ({ request, response }) => {
+const getVisitMeasurmentCustomerByLaserNameHandler: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
   
   const { name } = request.params;
@@ -59,4 +59,4 @@ console.log({filteredArray});
   });
 };
 
-export default getVisitMeasurmentCustumerByLaserNameHandler;
+export default getVisitMeasurmentCustomerByLaserNameHandler;

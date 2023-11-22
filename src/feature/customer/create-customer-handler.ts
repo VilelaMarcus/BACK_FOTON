@@ -3,12 +3,12 @@ import { PrismaClient } from '@prisma/client';
 import { HttpError } from '../../utils/errors';
 import { ApiHandler } from '../../utils/types';
 
-const createCustumerHandler: ApiHandler = async ({ request, response }) => {
+const createCustomerHandler: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
 
   const { 
     id,  
-    custumer_name,  
+    customer_name,  
     owner,  
     email, 
     logoUrl, 
@@ -38,4 +38,4 @@ const createCustumerHandler: ApiHandler = async ({ request, response }) => {
   response.status(200).json(result);
 };
 
-export default createCustumerHandler;
+export default createCustomerHandler;

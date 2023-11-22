@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { HttpError } from '../../utils/errors';
 import { ApiHandler } from '../../utils/types';
 
-const getLaserOfCustumerByIdHandler: ApiHandler = async ({ request, response }) => {
+const getLaserOfCustomerByIdHandler: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
   
   const { id } = request.params;
@@ -26,4 +26,4 @@ const getLaserOfCustumerByIdHandler: ApiHandler = async ({ request, response }) 
   response.status(200).json(LaserOfCustomer);
 };
 
-export default getLaserOfCustumerByIdHandler;
+export default getLaserOfCustomerByIdHandler;

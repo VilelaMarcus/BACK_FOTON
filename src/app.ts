@@ -5,11 +5,11 @@ import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import userRoute from './routes/user-routes';
 import laserRouter from './routes/laser-routes';
-import customerRouter from './routes/custumer-routes';
-import visitMeasurementRouter from './routes/custumer-visit-measurement-routes';
+import customerRouter from './routes/customer-routes';
+import visitMeasurementRouter from './routes/customer-visit-measurement-routes';
 import dashboadRouter from './routes/dashboard-routes';
 import laserOfCustomerRouter from './routes/laser-of-customer-routes';
-import laserCustomerRouter from './routes/laser-costumer-routes';
+import laserCustomerRouter from './routes/laser-customer-routes';
 import osROuter from './routes/os-routes';
 
 
@@ -24,10 +24,10 @@ async function bootstrap() {
   app.use('/dashboard', dashboadRouter);
   app.use('/laser', laserRouter);
   app.use('/customer', customerRouter);
-  app.use('/laserAndCostumer', laserCustomerRouter);
+  app.use('/laserAndCustomer', laserCustomerRouter);
   app.use('/os', osROuter);
   app.use('/laserOfCustomer', laserOfCustomerRouter);
-  app.use('/custumerMeasurement', visitMeasurementRouter);
+  app.use('/customerMeasurement', visitMeasurementRouter);
   
 
   const port = process.env.PORT;

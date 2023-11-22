@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { HttpError } from '../../utils/errors';
 import { ApiHandler } from '../../utils/types';
 
-const getCustumerHandler: ApiHandler = async ({ request, response }) => {
+const getCustomerHandler: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
 
   const customers = await prisma.customer.findMany();
@@ -17,4 +17,4 @@ const getCustumerHandler: ApiHandler = async ({ request, response }) => {
   response.status(200).json(customers);
 };
 
-export default getCustumerHandler;
+export default getCustomerHandler;

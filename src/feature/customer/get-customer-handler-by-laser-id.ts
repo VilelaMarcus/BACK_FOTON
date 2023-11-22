@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { HttpError } from '../../utils/errors';
 import { ApiHandler } from '../../utils/types';
 
-const getCustumerHandlerByLaserId: ApiHandler = async ({ request, response }) => {
+const getCustomerHandlerByLaserId: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
   
   
@@ -17,7 +17,7 @@ const getCustumerHandlerByLaserId: ApiHandler = async ({ request, response }) =>
 
 
   const customers = await prisma.$queryRaw<String[]>`
-    SELECT c.custumer_name
+    SELECT c.customer_name
       FROM public."LaserOfCustomer" loc
       JOIN public."Customer" c ON loc.customer_id = c.id
       JOIN public."Laser" l ON loc.laser_id = l.id
@@ -36,4 +36,4 @@ const getCustumerHandlerByLaserId: ApiHandler = async ({ request, response }) =>
   response.status(200).json(customers);
 };
 
-export default getCustumerHandlerByLaserId;
+export default getCustomerHandlerByLaserId;
