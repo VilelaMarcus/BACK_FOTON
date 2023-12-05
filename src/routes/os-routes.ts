@@ -1,15 +1,18 @@
 import { Router } from 'express';
 
 import createRoute from '../middleware/create-route';
-import getLaserOfCustomerHandler from '../feature/laserOfCustomer/get-laser-of-customer-handler';
-import getLaserOfCustomerByIdHandler from '../feature/laserOfCustomer/get-laser-of-customer-handler-by-custome_id';
-import createNewEquipmenteToClient from '../feature/laserOfCustomer/create-laser-of-customer-handler';
 import getOsByLaserId from '../feature/OS/get-os-by-laser-id.-handler';
+import getOsHandler from '../feature/OS/get-os-handler';
+import createOsHandler from '../feature/OS/create-os-handler';
+import deleteOsHandler from '../feature/OS/delete-os-by-id';
+import updateOsHandler from '../feature/OS/update-os-handler';
 
 const osROuter = Router();
 
-osROuter.get('/',  createRoute(getLaserOfCustomerHandler));
-osROuter.post('/',  createRoute(createNewEquipmenteToClient));
+osROuter.get('/',  createRoute(getOsHandler));
+osROuter.post('/',  createRoute(createOsHandler));
 osROuter.get('/:id', createRoute(getOsByLaserId));
+osROuter.put('/:id', createRoute(updateOsHandler));
+osROuter.delete('/:id', createRoute(deleteOsHandler));
 
 export default osROuter;

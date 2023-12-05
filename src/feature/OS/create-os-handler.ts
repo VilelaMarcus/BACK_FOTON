@@ -7,14 +7,10 @@ const createOsHandler: ApiHandler = async ({ request, response }) => {
   const prisma = new PrismaClient();
 
   const { 
-    id,  
-    customer_name,  
-    owner,  
-    email, 
-    logoUrl, 
-    address, 
-    city, 
-    zip_code,
+    id,
+    laser_id,
+    description,
+    type,
   } = request.body || '';
 
   if (!id) {
@@ -24,14 +20,16 @@ const createOsHandler: ApiHandler = async ({ request, response }) => {
 
   const data = {
     ...(id && { id }),                 
-    ...(owner && { owner }),          
-    ...(email && { email }),          
-    ...(address && { address }),                   
+    ...(laser_id && { laser_id }),          
+    ...(description && { description }),          
+    ...(type && { type }),                   
   };
 
-  const result = await prisma.customer.create({
+  const result = await prisma.oS.create({
     data: data,
   });
+
+  console.log(result);
 
 
  await prisma.$disconnect();
