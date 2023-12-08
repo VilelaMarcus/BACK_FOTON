@@ -31,8 +31,8 @@ const getVisitMeasurmentCustomerByLaserNameHandler: ApiHandler = async ({ reques
 
 const groupedData = visitMeasurement.reduce<{ [key: string]: VisitMeasurementItem }>((groups, item) => {
   const groupId = item.laser_of_customer_id;
-  const currentDate = new Date(item.date.split('/').reverse().join('/')); // Convert to Date
-  const existingDate = groups[groupId] ? new Date(groups[groupId].date.split('/').reverse().join('/')) : '';
+  const currentDate = item.date && new Date(item.date.split('/').reverse().join('/')); // Convert to Date
+  const existingDate = groups[groupId] && groups[groupId].date ? new Date(groups[groupId].date.split('/').reverse().join('/')) : '';
 
   if (!groups[groupId] || currentDate > existingDate) {
     groups[groupId] = item;
