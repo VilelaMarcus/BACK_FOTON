@@ -5,6 +5,7 @@ import getVisitMeasurmentCustomerByLaserNameHandler from '../feature/visitMeasur
 import getVisitMeasurmentCustomerByCustomerIdHandler from '../feature/visitMeasurement/get-visit-mesurement-customer-by-customer_id';
 import updateVisitMeasurmentCustomerHandler from '../feature/visitMeasurement/update-visit-mesurement-customer';
 import createVisitMeasurmentCustomerHandler from '../feature/visitMeasurement/create-visit-mesurement-customer';
+import deleteVisitCustomerMeasurement from '../feature/visitMeasurement/delete-visit-measument-handler';
 
 const visitMeasurementRouter = Router();
 
@@ -15,5 +16,8 @@ visitMeasurementRouter.patch(
     '/:id',
     createRoute(updateVisitMeasurmentCustomerHandler),
   );
-
+  visitMeasurementRouter.delete(
+    '/:id',
+    createRoute(deleteVisitCustomerMeasurement),
+  );
 export default visitMeasurementRouter;
