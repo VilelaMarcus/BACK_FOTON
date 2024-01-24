@@ -11,6 +11,7 @@ import dashboadRouter from './routes/dashboard-routes';
 import laserOfCustomerRouter from './routes/laser-of-customer-routes';
 import laserCustomerRouter from './routes/laser-customer-routes';
 import osROuter from './routes/os-routes';
+import authRouter from './routes/authentication-routes';
 
 
 const prisma = new PrismaClient();
@@ -21,6 +22,7 @@ app.use(express.json({ limit: '10mb' }));
 async function bootstrap() {
   // API Routes
   app.use('/user', userRoute);
+  app.use('/authentication', authRouter);
   app.use('/dashboard', dashboadRouter);
   app.use('/laser', laserRouter);
   app.use('/customer', customerRouter);
