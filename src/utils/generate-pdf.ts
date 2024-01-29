@@ -1,6 +1,5 @@
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import jimp from 'jimp';
-import fs from 'fs';
 import path from 'path';
 
 interface Item {
@@ -23,7 +22,6 @@ async function generateStyledPDF(
     tableContent: string[][],
     footer: string,
     bodyData: BodyItem[],
-    signature: string,
 ):Promise<Uint8Array> {
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage();
@@ -168,23 +166,23 @@ async function generateStyledPDF(
         page.drawText('- ' + bodyData[i].description + ': ' + bodyData[i].value, { x: 70, y: rowY, font, size: 10, color: rgb(0, 0, 0) });
     }
 
-    // Calculate the y-coordinate for the signature text and image
-    const signatureTextY = titleBody - (bodyData.length + 1) * 22;
+    // // Calculate the y-coordinate for the signature text and image
+    // const signatureTextY = titleBody - (bodyData.length + 1) * 22;
 
-    // Calculate the x-coordinate for the signature text
-    const textWidth = font.widthOfTextAtSize('Assinatura do responsavel da Clínica:', 12);
-    const textX = (width - textWidth) / 2;
-    page.drawText('Assinatura do responsavel da Clínica:', { x: textX, y: signatureTextY, font, size: 12, color: rgb(0, 0, 0) });
+    // // Calculate the x-coordinate for the signature text
+    // const textWidth = font.widthOfTextAtSize('Assinatura do responsavel da Clínica:', 12);
+    // const textX = (width - textWidth) / 2;
+    // page.drawText('Assinatura do responsavel da Clínica:', { x: textX, y: signatureTextY, font, size: 12, color: rgb(0, 0, 0) });
 
-    const signatureImageY = signatureTextY - 140;
+    // const signatureImageY = signatureTextY - 140;
 
-    // Calculate the x-coordinate for the signature image
-    const imageWidth = 250; // The width of the signature image
-    const imageX = (width - imageWidth) / 2;
-    const base64Data = signature.split(",")[1];
-    const signatureImageBuffer = Buffer.from(base64Data, 'base64');
-    const pngImage = await pdfDoc.embedPng(signatureImageBuffer);
-    page.drawImage(pngImage, { x: imageX, y: signatureImageY, width: imageWidth, height: 125 });
+    // // Calculate the x-coordinate for the signature image
+    // const imageWidth = 250; // The width of the signature image
+    // const imageX = (width - imageWidth) / 2;
+    // const base64Data = signature.split(",")[1];
+    // const signatureImageBuffer = Buffer.from(base64Data, 'base64');
+    // const pngImage = await pdfDoc.embedPng(signatureImageBuffer);
+    // page.drawImage(pngImage, { x: imageX, y: signatureImageY, width: imageWidth, height: 125 });
 
 
     // Draw footer

@@ -2,10 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { HttpError } from '../../utils/errors';
 import { ApiHandler } from '../../utils/types';
 import nodemailer, { SendMailOptions } from 'nodemailer';
-import fs from 'fs/promises';
-import path from 'path';
 import generateStyledPDF from '../../utils/generate-pdf';
-import { mockImage64 } from './assets/mockBase64';
 
 
 
@@ -78,7 +75,7 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
   }
 
 
-  const signature = mockImage64[0];
+//   const signature = mockImage64[0];
 
   console.log(request.body);
 
@@ -86,7 +83,7 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
   const footer = 'Rua Emilio de Menezes 226, Bairro Santa Maria Belo Horizonte – MG CEP 30525-200 - Telefone: (31)3388-2612';
   
   // Generate PDF
-  const pdfBuffer = await generateStyledPDF(tableContent, footer, bodyContent, signature);
+  const pdfBuffer = await generateStyledPDF(tableContent, footer, bodyContent);
 
   // Send email with PDF attachment
   await sendEmailWithAttachment("marcusvilela000@gmail.com", 'OS Teste', pdfBuffer);
