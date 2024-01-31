@@ -46,6 +46,22 @@ layers:
         - 'nodejs/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node'
         - '!nodejs/prisma/**'
         - 'nodejs/prisma/*.db'
+  Pdflib:
+    name: Pdflib
+    compatibleRuntimes:
+      - nodejs18.x
+    description: Required for Pdflib
+    package:
+      artifact: ./pdflib-layer.zip
+
+custom:
+  webpack:
+    webpackConfig: webpack.config.js
+    includeModules:
+      forceExclude:
+        - pdf-lib
+        - aws-sdk
+    packager: "yarn"
 
 package:
   patterns:
