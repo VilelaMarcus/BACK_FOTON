@@ -54,14 +54,6 @@ layers:
     package:
       artifact: ./pdflib-layer.zip
 
-custom:
-  webpack:
-    webpackConfig: webpack.config.js
-    includeModules:
-      forceExclude:
-        - pdf-lib
-        - aws-sdk
-    packager: "yarn"
 
 package:
   patterns:
