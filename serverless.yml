@@ -25,6 +25,8 @@ useDotenv: true
 
 plugins:
   - serverless-webpack-prisma
+  - serverless-plugin-common-excludes
+  - serverless-plugin-include-dependencies
   - serverless-dotenv-plugin
 
 custom:
