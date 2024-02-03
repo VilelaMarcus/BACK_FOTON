@@ -18,6 +18,7 @@
     "graceful-fs": "^4.2.11",
     "jimp": "^0.22.10",
     "jsonwebtoken": "^9.0.2",
+    "node-fetch": "^3.3.2",
     "nodemailer": "^6.9.8",
     "pdf-lib": "^1.17.1",
     "prisma": "^5.0.0",

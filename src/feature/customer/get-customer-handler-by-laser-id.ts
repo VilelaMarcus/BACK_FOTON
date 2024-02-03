@@ -9,11 +9,6 @@ const getCustomerHandlerByLaserId: ApiHandler = async ({ request, response }) =>
   
   
   const { id } = request.params;
-  console.log('Esta passando aca ?')
-  console.log('Esta passando aca ?')
-  console.log('Esta passando aca ?')
-  console.log('Esta passando aca ?')
-  console.log({id})
 
 
   const customers = await prisma.$queryRaw<String[]>`
