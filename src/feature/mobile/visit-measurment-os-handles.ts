@@ -30,8 +30,6 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
         throw new HttpError(404, 'Not found');
     }
 
-
-
     const LaserOfCustomer = await prisma.$queryRaw<LaserOfCustomer[]>`
     SELECT loc.*, l.*, c.*
     FROM public."LaserOfCustomer" loc
@@ -46,8 +44,6 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
       laser_id: LaserOfCustomer[0].laser_id,
     },
   });
-
-  console.log({OS});     
 
   const bodyContent = OS
     .filter((step) => osResponses.hasOwnProperty(step.id))
@@ -64,7 +60,7 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
     const truncatedAddress = LaserOfCustomer[0].address.substring(0, maxLength);
         
     const tableContent = [
-        [date, "Físico de campo: Fábio Vilela"],
+        [date, `"Físico de campo: ${tecnic_name}`],
         [`Equipamento: ${LaserOfCustomer[0].laser_name}`, "S/N: ----------"],
         [`Local: ${truncatedAddress}`, `Cliente:  ${LaserOfCustomer[0].owner}`],
     ];
