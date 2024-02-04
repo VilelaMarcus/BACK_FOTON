@@ -50,7 +50,7 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
     .map((step) => ({
         id: step.id,
         description: step.description,
-        value: osResponses[step.id],
+        value: osResponses[step.id] === true ? 'Feito' : osResponses[step.id],
     }));
 
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };

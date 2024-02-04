@@ -37,8 +37,6 @@ async function generateStyledPDF(
     // Convert the image to a buffer
     const imageBuffer: Buffer = Buffer.from(response.data, 'binary');
 
-    console.log(imageBuffer);
-    console.log(imageBuffer.slice(0, 8));
     // Embed the image in the PDF using pdf-lib's built-in image loading
     const logoImage = await pdfDoc.embedJpg(imageBuffer);
 
