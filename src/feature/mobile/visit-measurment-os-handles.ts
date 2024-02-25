@@ -71,7 +71,7 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
     const pdfBuffer = await generateStyledPDF(tableContent, footer, bodyContent, signature);
 
     // Send email with PDF attachment
-    await sendEmailWithAttachment('vilelamarcusvinicius@gmail.com,' + LaserOfCustomer[0].email, 'OS Teste', pdfBuffer);
+    await sendEmailWithAttachment('marcusvilela000@gmail.com,' + '', 'Relátorio de Serviço Executado', pdfBuffer);
 
   await prisma.$disconnect();
   response.status(200).json();
@@ -79,15 +79,25 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
 
 async function sendEmailWithAttachment(recipientEmail: string, subject: string, pdfBuffer: Uint8Array) {
 
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
+    // const transporter = nodemailer.createTransport({
+    //     service: 'gmail',
+    //     auth: {
+    //     user: 'marcusvilela25@gmail.com',
+    //     pass: 'dbcp ttfb oayk delh',
+    //     },
+    // });
+
+    let transporterOutlook = nodemailer.createTransport({
+        service: 'Outlook365',
+        host: "smtp.office365.com",
         auth: {
-        user: 'marcusvilela25@gmail.com',
-        pass: 'dbcp ttfb oayk delh',
+          user: "carolfotontec@outlook.com",
+          pass: process.env.EMAIL_PASSWORD,
         },
-    });
+      });
+
     const mailOptions: SendMailOptions = {
-        from: 'marcusvilela25@gmail.com',
+        from: 'carolfotontec@outlook.com',
         to: recipientEmail,
         subject: subject,
         text: 'PDF Attachment',
@@ -99,7 +109,7 @@ async function sendEmailWithAttachment(recipientEmail: string, subject: string, 
         ],
     };
 
-    await transporter.sendMail(mailOptions);
+    await transporterOutlook.sendMail(mailOptions);
 }
 
 export default createNewVisitByOShandler;

@@ -1,0 +1,3 @@
+-- CreateEnum
+
+ALTER TABLE "OS" ADD COLUMN  "pdf" BOOLEAN NULL;
