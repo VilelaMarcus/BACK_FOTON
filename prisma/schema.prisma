@@ -132,6 +132,12 @@ model OS {
   type OsType
 }
 
+model Pecas{
+  id String  @id @default(uuid())
+  name String 
+  preco String
+}
+
 enum GalvoStatus {
   OK
   MEDIO

@@ -24,7 +24,7 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
     
     const prisma = new PrismaClient();
 
-    const { laser_of_customer_id, os : osResponses, signature, tecnic_name } = request.body;
+    const { laser_of_customer_id, previous_situations: previousSituations, os : osResponses, signature, tecnic_name } = request.body;
 
     if (!laser_of_customer_id) {
         throw new HttpError(404, 'Not found');
@@ -60,7 +60,7 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
     const truncatedAddress = LaserOfCustomer[0].address.substring(0, maxLength);
         
     const tableContent = [
-        [date, `"Físico de campo: ${tecnic_name}`],
+        [date, `Físico de campo: ${tecnic_name}`],
         [`Equipamento: ${LaserOfCustomer[0].laser_name}`, "S/N: ----------"],
         [`Local: ${truncatedAddress}`, `Cliente:  ${LaserOfCustomer[0].owner}`],
     ];
@@ -68,7 +68,7 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
     const header = 'Relatório de Visita';
     const footer = 'Rua Emilio de Menezes 226, Bairro Santa Maria Belo Horizonte – MG CEP 30525-200 - Telefone: (31)3388-2612';
     // Generate PDF
-    const pdfBuffer = await generateStyledPDF(tableContent, footer, bodyContent, signature);
+    const pdfBuffer = await generateStyledPDF(tableContent, footer, previousSituations ,bodyContent, signature);
 
     // Send email with PDF attachment
     await sendEmailWithAttachment('marcusvilela000@gmail.com,' + '', 'Relátorio de Serviço Executado', pdfBuffer);

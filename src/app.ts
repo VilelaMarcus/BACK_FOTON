@@ -12,6 +12,7 @@ import laserOfCustomerRouter from './routes/laser-of-customer-routes';
 import laserCustomerRouter from './routes/laser-customer-routes';
 import osROuter from './routes/os-routes';
 import authRouter from './routes/authentication-routes';
+import pecasRouter from './routes/pecas-routes';
 
 
 const prisma = new PrismaClient();
@@ -25,6 +26,7 @@ async function bootstrap() {
   app.use('/authentication', authRouter);
   app.use('/dashboard', dashboadRouter);
   app.use('/laser', laserRouter);
+  app.use('/pecas', pecasRouter);
   app.use('/customer', customerRouter);
   app.use('/laserAndCustomer', laserCustomerRouter);
   app.use('/os', osROuter);
