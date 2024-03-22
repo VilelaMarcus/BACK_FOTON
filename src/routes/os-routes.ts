@@ -8,6 +8,8 @@ import deleteOsHandler from '../feature/OS/delete-os-by-id';
 import updateOsHandler from '../feature/OS/update-os-handler';
 import createNewVisitByOShandler from '../feature/mobile/visit-measurment-os-handles';
 
+import createNewVisitByOShandler from '../feature/mobile/visit-measurment-os-handles';
+
 const osROuter = Router();
 
 osROuter.get('/',  createRoute(getOsHandler));

@@ -25,6 +25,8 @@ useDotenv: true
 
 plugins:
   - serverless-webpack-prisma
+  - serverless-plugin-common-excludes
+  - serverless-plugin-include-dependencies
   - serverless-dotenv-plugin
 
 custom:
@@ -44,6 +46,14 @@ layers:
         - 'nodejs/node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node'
         - '!nodejs/prisma/**'
         - 'nodejs/prisma/*.db'
+  Pdflib:
+    name: Pdflib
+    compatibleRuntimes:
+      - nodejs18.x
+    description: Required for Pdflib
+    package:
+      artifact: ./pdflib-layer.zip
+
 
 package:
   patterns:

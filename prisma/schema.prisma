@@ -124,9 +124,19 @@ model CustomerVisitMeasurement{
 model OS {
   id String @id @default(uuid())
   laser_id String
+  relacionTo String?
+  order Int?
 
+  pdf  Boolean?
   description String
   type OsType
+}
+
+model Pecas{
+  id String  @id @default(uuid())
+  name String 
+  preco String
+  laser_id String
 }
 
 enum GalvoStatus {

@@ -5,103 +5,99 @@ import nodemailer, { SendMailOptions } from 'nodemailer';
 import generateStyledPDF from '../../utils/generate-pdf';
 
 
+type LaserOfCustomer = {
+    id: string;
+    laser_id: string;
+    customer_id: string;
+    address: string;
+    customer_name: string;
+    city: string;
+    zip_code: string;
+    laser_name: string;
+    brand: string;
+    owner:string;
+    email:string;
+}
 
-const headerData = [
-    { field: 'Data:', data: '19 de Outubro de 2021' },
-    { field: 'Físico de campo:', data: 'Fábio Vilela' },
-    { field: 'Equipamento:', data: 'IFS Intralase' },
-    { field: 'S/N:', data: '0506-40044' },
-    { field: 'Local:', data: 'Curitiba PR' },
-    { field: 'Cliente:', data: 'Laserview' },
-  ];
-
-  const bodyContent =   [{
-    "id": "419037a8-2208-48ce-be78-db30fe3a2957",
-    "description": "Conectar computador a cabeça de laser",
-    "value": "o41234k"
-},{
-    "id": "419037a8-2208-48ce-be78-db30fe3a2957",
-    "description": "Conectar computador a cabeça de laser",
-    "value": "o1243k"
-},{
-    "id": "419037a8-2208-48ce-be78-db30fe3a2957",
-    "description": "Conectar computador a cabeça de laser",
-    "value": "o1k"
-},{
-    "id": "419037a8-2208-48ce-be78-db30fe3a2957",
-    "description": "Conectar computador a cabeça de laser",
-    "value": "Foi feito"
-},{
-    "id": "419037a8-2208-48ce-be78-db30fe3a2957",
-    "description": "Conectar computador a cabeça de laser",
-    "value": "3253245"
-},{
-    "id": "419037a8-2208-48ce-be78-db30fe3a2957",
-    "description": "Conectar computador a cabeça de laser",
-    "value": "52352345"
-},{
-    "id": "419037a8-2208-48ce-be78-db30fe3a2957",
-    "description": "Conectar computador a cabeça de laser",
-    "value": "o41234k"
-},{
-    "id": "419037a8-2208-48ce-be78-db30fe3a2957",
-    "description": "Conectar computador a cabeça de laser",
-    "value": "o1243k"
-},{
-    "id": "419037a8-2208-48ce-be78-db30fe3a2957",
-    "description": "Conectar computador a cabeça de laser",
-    "value": "o1k"
-},{
-    "id": "419037a8-2208-48ce-be78-db30fe3a2957",
-    "description": "Conectar computador a cabeça de laser",
-    "value": "ok22"
-},
-]
-
-
-const tableContent = [
-    ["Data: 19 de Outubro de 2021", "Físico de campo: Fábio Vilela"],
-    ["Equipamento: IFS Intralase", "S/N: 0506-40044"],
-    ["Local: Curitiba PR", "Cliente: Laserview"],
-];
 
 const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
-  const prisma = new PrismaClient();
+    
+    const prisma = new PrismaClient();
 
-  const { laser_of_customer_id, os } = request.body;
+    const { laser_of_customer_id, previous_situations: previousSituations, os : osResponses, signature, tecnic_name } = request.body;
 
-  if (!laser_of_customer_id) {
-    throw new HttpError(404, 'Not found');
-  }
+    if (!laser_of_customer_id) {
+        throw new HttpError(404, 'Not found');
+    }
+
+    const LaserOfCustomer = await prisma.$queryRaw<LaserOfCustomer[]>`
+    SELECT loc.*, l.*, c.*
+    FROM public."LaserOfCustomer" loc
+    JOIN public."Laser" l ON loc.laser_id = l.id
+    JOIN public."Customer" c ON loc.customer_id = c.id
+    WHERE loc.id = ${laser_of_customer_id};
+  `;
 
 
-//   const signature = mockImage64[0];
+  const OS = await prisma.oS.findMany({
+    where: {
+      laser_id: LaserOfCustomer[0].laser_id,
+    },
+  });
 
-  console.log(request.body);
+  const bodyContent = OS
+    .filter((step) => osResponses.hasOwnProperty(step.id))
+    .map((step) => ({
+        id: step.id,
+        description: step.description,
+        value: osResponses[step.id] === true ? 'Feito' : osResponses[step.id],
+    }));
 
-  const header = 'Relatório de Visita';
-  const footer = 'Rua Emilio de Menezes 226, Bairro Santa Maria Belo Horizonte – MG CEP 30525-200 - Telefone: (31)3388-2612';
-  
-  // Generate PDF
-  const pdfBuffer = await generateStyledPDF(tableContent, footer, bodyContent);
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date().toLocaleDateString('pt-BR', options);
 
-  // Send email with PDF attachment
-  await sendEmailWithAttachment("marcusvilela000@gmail.com", 'OS Teste', pdfBuffer);
+    const maxLength = 40;
+    const truncatedAddress = LaserOfCustomer[0].address.substring(0, maxLength);
+        
+    const tableContent = [
+        [date, `Físico de campo: ${tecnic_name}`],
+        [`Equipamento: ${LaserOfCustomer[0].laser_name}`, "S/N: ----------"],
+        [`Local: ${truncatedAddress}`, `Cliente:  ${LaserOfCustomer[0].owner}`],
+    ];
+
+    const header = 'Relatório de Visita';
+    const footer = 'Rua Emilio de Menezes 226, Bairro Santa Maria Belo Horizonte – MG CEP 30525-200 - Telefone: (31)3388-2612';
+    // Generate PDF
+    const pdfBuffer = await generateStyledPDF(tableContent, footer, previousSituations ,bodyContent, signature);
+
+    // Send email with PDF attachment
+    await sendEmailWithAttachment('marcusvilela000@gmail.com,' + '', 'Relátorio de Serviço Executado', pdfBuffer);
 
   await prisma.$disconnect();
   response.status(200).json();
 };
 
 async function sendEmailWithAttachment(recipientEmail: string, subject: string, pdfBuffer: Uint8Array) {
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
+
+    // const transporter = nodemailer.createTransport({
+    //     service: 'gmail',
+    //     auth: {
+    //     user: 'marcusvilela25@gmail.com',
+    //     pass: 'dbcp ttfb oayk delh',
+    //     },
+    // });
+
+    let transporterOutlook = nodemailer.createTransport({
+        service: 'Outlook365',
+        host: "smtp.office365.com",
         auth: {
-        user: 'marcusvilela25@gmail.com',
-        pass: 'dbcp ttfb oayk delh',
+          user: "carolfotontec@outlook.com",
+          pass: process.env.EMAIL_PASSWORD,
         },
-    });
+      });
+
     const mailOptions: SendMailOptions = {
-        from: 'marcusvilela25@gmail.com',
+        from: 'carolfotontec@outlook.com',
         to: recipientEmail,
         subject: subject,
         text: 'PDF Attachment',
@@ -113,7 +109,7 @@ async function sendEmailWithAttachment(recipientEmail: string, subject: string, 
         ],
     };
 
-    await transporter.sendMail(mailOptions);
+    await transporterOutlook.sendMail(mailOptions);
 }
 
 export default createNewVisitByOShandler;

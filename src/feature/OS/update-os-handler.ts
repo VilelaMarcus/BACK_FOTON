@@ -14,13 +14,13 @@ const updateOsHandler: ApiHandler = async ({ request, response }) => {
   const { 
     description,
     type,
+    order,
+    pdf,
   } = request.body || '';
 
   if (!id) {
     throw new HttpError(404, 'Not found');
   }
-
-  console.log({description});
 
   const result = await prisma.oS.update({
     where: {
@@ -29,6 +29,8 @@ const updateOsHandler: ApiHandler = async ({ request, response }) => {
     data: {
       ...(description && { description }),
       ...(type && { type }),    
+      ...(order && { order }),    
+      pdf: pdf, 
     },
   });
 

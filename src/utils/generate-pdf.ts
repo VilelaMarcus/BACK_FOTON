@@ -1,5 +1,7 @@
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import jimp from 'jimp';
+import axios from 'axios';
+
 import path from 'path';
 
 interface Item {
@@ -21,26 +23,29 @@ interface TableItem {
 async function generateStyledPDF(
     tableContent: string[][],
     footer: string,
-    bodyData: BodyItem[],
+    previousSituations: string,
+    bodyData: BodyItem[],    
+    signature: string,
 ):Promise<Uint8Array> {
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage();
     const { width, height } = page.getSize();
 
     const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+     // Fetch the image
+    const response = await axios.get('https://foton-buket.s3.amazonaws.com/logo.png', { responseType: 'arraybuffer' });
+    
+    // Convert the image to a buffer
+    const imageBuffer: Buffer = Buffer.from(response.data, 'binary');
 
-    const logoImagePath = path.join(__dirname, 'assets', 'logo.png');
-    const logoImage = await jimp.read(logoImagePath);
+    // Embed the image in the PDF using pdf-lib's built-in image loading
+    const logoImage = await pdfDoc.embedJpg(imageBuffer);
 
-    const logoX = (width - 130) / 2;
+
+    const logoX = (width - 220) / 2;
     const logoY = height - 75;
 
-    const logoImageBuffer = await logoImage.getBufferAsync(jimp.MIME_PNG);
-    const logoImageEmbed = await pdfDoc.embedPng(logoImageBuffer);
-
-
-
-    page.drawImage(logoImageEmbed, {
+    page.drawImage(logoImage, {
         x: logoX,
         y: logoY,
         width: 200,
@@ -53,38 +58,38 @@ async function generateStyledPDF(
     
     
     // Draw header table
-    const headerTableY = titleY - 30;
+    const headerTableY = titleY - 25;
     const cellWidth = (width - 100) / 2;
-    const headerBoxHeight = 3 * 30; // Adjust the box height based on the number of rows
+    const headerBoxHeight = 3 * 25; // Adjust the box height based on the number of rows
 
     
     page.drawLine({
-        start: { x: 50, y: headerTableY },
-        end: { x: width - 50, y: headerTableY },
-        thickness: 1,
-        color: rgb(0, 0, 0),
-        });
-    
-        page.drawLine({
-        start: { x: 50, y: headerTableY },
-        end: { x: 50, y: headerTableY - headerBoxHeight },
-        thickness: 1,
-        color: rgb(0, 0, 0),
-        });
-    
-        page.drawLine({
-        start: { x: width - 50, y: headerTableY },
-        end: { x: width - 50, y: headerTableY - headerBoxHeight },
-        thickness: 1,
-        color: rgb(0, 0, 0),
-        });
-    
-        page.drawLine({
-        start: { x: 50, y: headerTableY - headerBoxHeight },
-        end: { x: width - 50, y: headerTableY - headerBoxHeight },
-        thickness: 1,
-        color: rgb(0, 0, 0),
-        });   
+    start: { x: 50, y: headerTableY },
+    end: { x: width - 50, y: headerTableY },
+    thickness: 1,
+    color: rgb(0, 0, 0),
+    });
+
+    page.drawLine({
+    start: { x: 50, y: headerTableY },
+    end: { x: 50, y: headerTableY - headerBoxHeight },
+    thickness: 1,
+    color: rgb(0, 0, 0),
+    });
+
+    page.drawLine({
+    start: { x: width - 50, y: headerTableY },
+    end: { x: width - 50, y: headerTableY - headerBoxHeight },
+    thickness: 1,
+    color: rgb(0, 0, 0),
+    });
+
+    page.drawLine({
+    start: { x: 50, y: headerTableY - headerBoxHeight },
+    end: { x: width - 50, y: headerTableY - headerBoxHeight },
+    thickness: 1,
+    color: rgb(0, 0, 0),
+    });   
 
 
     
@@ -92,7 +97,7 @@ async function generateStyledPDF(
     const columnDividerX = 60 + cellWidth;    
     // Draw lines for each row and in the middle dividing the columns
     for (let i = 0; i <= tableContent.length; i++) {
-        const rowY = headerTableY - i * 30;
+        const rowY = headerTableY - i * 25;
 
         // Draw line for each row
         page.drawLine({
@@ -111,15 +116,61 @@ async function generateStyledPDF(
     }
 
     for (let i = 0; i < tableContent.length; i++) {
-        const rowY = headerTableY - i * 30;
+        const rowY = headerTableY - i * 25;
         // Draw text for each column above the line
         const textY = rowY - 15;
         page.drawText(tableContent[i][0], { x: 60, y: textY, font, size: 10, color: rgb(0, 0, 0) });
         page.drawText(tableContent[i][1], { x: columnDividerX + 10, y: textY, font, size: 10, color: rgb(0, 0, 0) });
     }
 
+
+    // Draw the previus situation in a single row inside a larger box
+    const previusTableY = headerTableY - headerBoxHeight - 20;
+    const PreviusHeight = 100 // Add an extra row for the title
+
+    page.drawLine({
+    start: { x: 50, y: previusTableY },
+    end: { x: width - 50, y: previusTableY },
+    thickness: 1,
+    color: rgb(0, 0, 0),
+    });
+
+    page.drawLine({
+    start: { x: 50, y: previusTableY },
+    end: { x: 50, y: previusTableY - PreviusHeight },
+    thickness: 1,
+    color: rgb(0, 0, 0),
+    });
+
+    page.drawLine({
+    start: { x: width - 50, y: previusTableY },
+    end: { x: width - 50, y: previusTableY - PreviusHeight },
+    thickness: 1,
+    color: rgb(0, 0, 0),
+    });
+
+    page.drawLine({
+    start: { x: 50, y: previusTableY - PreviusHeight },
+    end: { x: width - 50, y: previusTableY - PreviusHeight },
+    thickness: 1,
+    color: rgb(0, 0, 0),
+    });
+
+    const titlePrevius = previusTableY - 20; // Adjust the padding here
+
+    // Calculate the width of the text
+    const previusDataTitleWidth = font.widthOfTextAtSize('Situação Prévia', 20);
+
+    // Calculate the x-coordinate for the centered text
+    const previusDataTitleX = (width - previusDataTitleWidth) / 2;
+
+    // Draw the body data title
+    page.drawText('Situação Prévia', { x: previusDataTitleX, y: titlePrevius, size: 12, font, color: rgb(0, 0, 0) });
+    page.drawText(previousSituations, { x: 70, y: titlePrevius -20, font, size: 10, color: rgb(0, 0, 0) });
+
+
     // Draw body data in a single row inside a larger box
-    const bodyTableY = headerTableY - headerBoxHeight - 20;
+    const bodyTableY = previusTableY - PreviusHeight  - 10;
     const bodyTableHeight = 20 * (bodyData.length + 2); // Add an extra row for the title
 
     page.drawLine({
@@ -166,24 +217,23 @@ async function generateStyledPDF(
         page.drawText('- ' + bodyData[i].description + ': ' + bodyData[i].value, { x: 70, y: rowY, font, size: 10, color: rgb(0, 0, 0) });
     }
 
-    // // Calculate the y-coordinate for the signature text and image
-    // const signatureTextY = titleBody - (bodyData.length + 1) * 22;
+    // Calculate the x-coordinate for the signature text
+    const textWidth = font.widthOfTextAtSize('Assinatura do responsavel da Clínica:', 12);
+    const textX = (width - textWidth) / 2;
+    page.drawText('Assinatura do responsavel da Clínica:', { x: textX, y: 170, font, size: 12, color: rgb(0, 0, 0) });
 
-    // // Calculate the x-coordinate for the signature text
-    // const textWidth = font.widthOfTextAtSize('Assinatura do responsavel da Clínica:', 12);
-    // const textX = (width - textWidth) / 2;
-    // page.drawText('Assinatura do responsavel da Clínica:', { x: textX, y: signatureTextY, font, size: 12, color: rgb(0, 0, 0) });
+    // Calculate the x-coordinate for the signature image
+    if (signature) {
+        const imageWidth = 250; // The width of the signature image
+        const imageX = (width - imageWidth) / 2;
+        const base64Data = signature.split(",")[1];
+        const signatureImageBuffer = Buffer.from(base64Data, 'base64');
+        const pngImage = await pdfDoc.embedPng(signatureImageBuffer);
+        
 
-    // const signatureImageY = signatureTextY - 140;
-
-    // // Calculate the x-coordinate for the signature image
-    // const imageWidth = 250; // The width of the signature image
-    // const imageX = (width - imageWidth) / 2;
-    // const base64Data = signature.split(",")[1];
-    // const signatureImageBuffer = Buffer.from(base64Data, 'base64');
-    // const pngImage = await pdfDoc.embedPng(signatureImageBuffer);
-    // page.drawImage(pngImage, { x: imageX, y: signatureImageY, width: imageWidth, height: 125 });
-
+        // Draw the signature image on top of the shadow rectangle
+        page.drawImage(pngImage, { x: imageX, y: 31, width: imageWidth, height: 125 });
+    }
 
     // Draw footer
     const footerY = 30;
