@@ -132,11 +132,18 @@ model OS {
   type OsType
 }
 
+
 model Pecas{
   id String  @id @default(uuid())
   name String 
   preco String
   laser_id String
+}
+
+model Order_OS {
+  id           String   @id @default(cuid())
+  laser_id     String?
+  sequence_itens String[]
 }
 
 enum GalvoStatus {

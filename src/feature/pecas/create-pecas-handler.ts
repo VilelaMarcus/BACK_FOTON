@@ -8,6 +8,7 @@ const createNewPeca: ApiHandler = async ({ request, response }) => {
 
   const { 
     id,  
+    laser_id = '1e3',
     name,
     preco,
   } = request.body || '';
@@ -15,14 +16,16 @@ const createNewPeca: ApiHandler = async ({ request, response }) => {
   if (!id) {
     throw new HttpError(404, 'Not found');
   }
-
+  
+  console.log('POSR REQUEST')
   console.log(request.body);
 
 
   const data = {
     ...(id && { id }),                    
-    ...(name && { name }),                   
     ...(preco && { preco }),                   
+    ...(laser_id && { laser_id }),                   
+    ...(name && { name: name }),                   
   };
 
   const result = await prisma.pecas.create({

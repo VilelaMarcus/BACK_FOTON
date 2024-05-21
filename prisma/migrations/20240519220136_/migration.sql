@@ -7,6 +7,9 @@
 
 */
 -- AlterTable
+ALTER TABLE "Order_OS" ADD CONSTRAINT "Order_OS_pkey" PRIMARY KEY ("id");
+
+-- AlterTable
 ALTER TABLE "Pecas" ALTER COLUMN "name" SET NOT NULL,
 ALTER COLUMN "preco" SET NOT NULL,
 ALTER COLUMN "laser_id" SET NOT NULL,
