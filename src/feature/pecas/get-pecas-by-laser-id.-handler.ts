@@ -8,11 +8,7 @@ const getPecasByLaserId: ApiHandler = async ({ request, response }) => {
   
   const { id } = request.params;
 
-  const pecas = await prisma.pecas.findMany({
-    where: {
-      laser_id: id,
-    },
-  });
+  const pecas = await prisma.pecas.findMany();
 
   if (pecas === null) {
     throw new HttpError(404, 'Not found');

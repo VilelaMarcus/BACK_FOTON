@@ -2,7 +2,6 @@ require('dotenv').config();
 import serverless from 'serverless-http';
 import express, { Response } from 'express';
 import cors from 'cors';
-import { PrismaClient } from '@prisma/client';
 import userRoute from './routes/user-routes';
 import laserRouter from './routes/laser-routes';
 import customerRouter from './routes/customer-routes';
@@ -14,14 +13,17 @@ import osROuter from './routes/os-routes';
 import authRouter from './routes/authentication-routes';
 import pecasRouter from './routes/pecas-routes';
 import orderOsRouter from './routes/order-os-routes';
+import prisma from './prismaClient';
 
 
-const prisma = new PrismaClient();
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
-async function bootstrap() {
+async function bootstrap() {  
+  
+  prisma.initPrisma();
+
   // API Routes
   app.use('/user', userRoute);
   app.use('/authentication', authRouter);
@@ -47,7 +49,7 @@ bootstrap()
     throw err;
 })
   .finally(async () => {
-    await prisma.$disconnect();
+    await prisma.disconnect();
 });
 
 const handler = serverless(app)
