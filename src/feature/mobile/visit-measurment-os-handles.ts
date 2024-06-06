@@ -23,8 +23,8 @@ type LaserOfCustomer = {
 const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
     
     const prisma = new PrismaClient();
-
-    const { laser_of_customer_id, previous_situations: previousSituations, os : osResponses, signature, tecnic_name } = request.body;
+    
+    const { laser_of_customer_id, previous_situations: previousSituations, os : osResponses, signature, tecnic_name, pecas: pecasUtilized } = request.body;
 
     if (!laser_of_customer_id) {
         throw new HttpError(404, 'Not found');
@@ -37,7 +37,6 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
     JOIN public."Customer" c ON loc.customer_id = c.id
     WHERE loc.id = ${laser_of_customer_id};
   `;
-
 
   const OS = await prisma.oS.findMany({
     where: {
@@ -68,7 +67,7 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
     const header = 'Relatório de Visita';
     const footer = 'Rua Emilio de Menezes 226, Bairro Santa Maria Belo Horizonte – MG CEP 30525-200 - Telefone: (31)3388-2612';
     // Generate PDF
-    const pdfBuffer = await generateStyledPDF(tableContent, footer, previousSituations ,bodyContent, signature);
+    const pdfBuffer = await generateStyledPDF(tableContent, footer, previousSituations ,bodyContent, pecasUtilized, signature);
 
     // Send email with PDF attachment
     await sendEmailWithAttachment('marcusvilela000@gmail.com,' + '', 'Relátorio de Serviço Executado', pdfBuffer);
@@ -79,25 +78,25 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
 
 async function sendEmailWithAttachment(recipientEmail: string, subject: string, pdfBuffer: Uint8Array) {
 
-    // const transporter = nodemailer.createTransport({
-    //     service: 'gmail',
-    //     auth: {
-    //     user: 'marcusvilela25@gmail.com',
-    //     pass: 'dbcp ttfb oayk delh',
-    //     },
-    // });
-
-    let transporterOutlook = nodemailer.createTransport({
-        service: 'Outlook365',
-        host: "smtp.office365.com",
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
         auth: {
-          user: "carolfotontec@outlook.com",
-          pass: process.env.EMAIL_PASSWORD,
+        user: 'marcusvilela25@gmail.com',
+        pass: 'dbcp ttfb oayk delh',
         },
-      });
+    });
+
+    // let transporterOutlook = nodemailer.createTransport({
+    //     service: 'Outlook365',
+    //     host: "smtp.office365.com",
+    //     auth: {
+    //       user: "carolfotontec@outlook.com",
+    //       pass: process.env.EMAIL_PASSWORD,
+    //     },
+    //   });
 
     const mailOptions: SendMailOptions = {
-        from: 'carolfotontec@outlook.com',
+        from: 'marcusvilela25@gmail.com',
         to: recipientEmail,
         subject: subject,
         text: 'PDF Attachment',
@@ -109,7 +108,7 @@ async function sendEmailWithAttachment(recipientEmail: string, subject: string, 
         ],
     };
 
-    await transporterOutlook.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
 }
 
 export default createNewVisitByOShandler;

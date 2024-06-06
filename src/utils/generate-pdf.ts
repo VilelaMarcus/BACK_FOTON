@@ -19,12 +19,12 @@ interface TableItem {
     data: string;
 }
 
-
 async function generateStyledPDF(
     tableContent: string[][],
     footer: string,
     previousSituations: string,
     bodyData: BodyItem[],    
+    pecasUtilized: string[],    
     signature: string,
 ):Promise<Uint8Array> {
     const pdfDoc = await PDFDocument.create();
@@ -53,7 +53,7 @@ async function generateStyledPDF(
     });
 
     // Draw title for the header table
-    const titleY = logoY - 40;
+    const titleY = logoY - 20;
     page.drawText('Relatório de Serviços', { x: (width - 150) / 2, y: titleY, font, size: 14, color: rgb(0, 0, 0) });
     
     
@@ -215,6 +215,55 @@ async function generateStyledPDF(
     for (let i = 0; i < bodyData.length; i++) {
         const rowY = titleBody - (i + 1) * 20;
         page.drawText('- ' + bodyData[i].description + ': ' + bodyData[i].value, { x: 70, y: rowY, font, size: 10, color: rgb(0, 0, 0) });
+    }
+
+    
+    // Draw body data in a single row inside a larger box
+    const pecasTableY = bodyTableY - bodyTableHeight  - 10;
+    const pecasTableHeight = 20 * (pecasUtilized.length + 2); // Add an extra row for the title
+
+    page.drawLine({
+        start: { x: 50, y: pecasTableY },
+        end: { x: width - 50, y: pecasTableY },
+        thickness: 1,
+        color: rgb(0, 0, 0),
+        });
+    
+        page.drawLine({
+        start: { x: 50, y: pecasTableY },
+        end: { x: 50, y: pecasTableY - pecasTableHeight },
+        thickness: 1,
+        color: rgb(0, 0, 0),
+        });
+    
+        page.drawLine({
+        start: { x: width - 50, y: pecasTableY },
+        end: { x: width - 50, y: pecasTableY - pecasTableHeight },
+        thickness: 1,
+        color: rgb(0, 0, 0),
+        });
+    
+        page.drawLine({
+        start: { x: 50, y: pecasTableY - pecasTableHeight },
+        end: { x: width - 50, y: pecasTableY - pecasTableHeight },
+        thickness: 1,
+        color: rgb(0, 0, 0),
+        });
+
+    const titlePecas = pecasTableY - 20; // Adjust the padding here
+
+    // Calculate the width of the text
+    const pecasDataTitleWidth = font.widthOfTextAtSize('Peças utilizadas', 20);
+
+    // Calculate the x-coordinate for the centered text
+    const pecasDataTitleX = (width - pecasDataTitleWidth) / 2;
+
+    // Draw the body data title
+    page.drawText('Peças utilizadas', { x: pecasDataTitleX, y: titlePecas, size: 12, font, color: rgb(0, 0, 0) });
+
+    for (let i = 0; i < pecasUtilized.length; i++) {
+        const rowY = titlePecas - (i + 1) * 20;
+        page.drawText('- ' + pecasUtilized[i], { x: 70, y: rowY, font, size: 10, color: rgb(0, 0, 0) });
     }
 
     // Calculate the x-coordinate for the signature text
