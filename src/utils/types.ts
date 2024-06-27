@@ -103,4 +103,17 @@ export type VisitMeasurementItem = {
 
 };
 
+export interface ReportData {
+  client: string;
+  cnpj: string;
+  address: string;
+  contact: string;
+  technician: string;
+  inspectionDate: string;
+}
 
+export interface EquipmentData {
+  equipment: string;
+  manufacturer: string;
+  serialNumber: string;
+}

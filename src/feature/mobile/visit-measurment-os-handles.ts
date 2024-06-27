@@ -1,8 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 import { HttpError } from '../../utils/errors';
-import { ApiHandler } from '../../utils/types';
+import { ApiHandler, ReportData, EquipmentData } from '../../utils/types';
 import nodemailer, { SendMailOptions } from 'nodemailer';
 import generateStyledPDF from '../../utils/generate-pdf';
+import generateStyledPDF2 from '../../utils/generate-pdf2';
 
 
 type LaserOfCustomer = {
@@ -64,10 +65,25 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
         [`Local: ${truncatedAddress}`, `Cliente:  ${LaserOfCustomer[0].owner}`],
     ];
 
+    const reportData: ReportData = {
+        client: 'Cliente XPTO',
+        cnpj: '00.000.000/0001-00',
+        address: 'Rua Principal, 123',
+        contact: '(11) 9999-9999',
+        technician: 'João Silva',
+        inspectionDate: '24/06/2024',
+    };
+
+    const equipmentData: EquipmentData = {
+        equipment: 'Equipamento XPTO',
+        manufacturer: 'Fabricante XPTO',
+        serialNumber: '123456',
+    };
+
     const header = 'Relatório de Visita';
     const footer = 'Rua Emilio de Menezes 226, Bairro Santa Maria Belo Horizonte – MG CEP 30525-200 - Telefone: (31)3388-2612';
     // Generate PDF
-    const pdfBuffer = await generateStyledPDF(tableContent, footer, previousSituations ,bodyContent, pecasUtilized, signature);
+    const pdfBuffer = await generateStyledPDF(reportData, equipmentData, footer, previousSituations ,bodyContent, tecnic_name, signature);
 
     // Send email with PDF attachment
     await sendEmailWithAttachment('marcusvilela000@gmail.com,' + '', 'Relátorio de Serviço Executado', pdfBuffer);
