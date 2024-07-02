@@ -3,7 +3,6 @@ import { HttpError } from '../../utils/errors';
 import { ApiHandler, ReportData, EquipmentData } from '../../utils/types';
 import nodemailer, { SendMailOptions } from 'nodemailer';
 import generateStyledPDF from '../../utils/generate-pdf';
-import generateStyledPDF2 from '../../utils/generate-pdf2';
 
 
 type LaserOfCustomer = {
