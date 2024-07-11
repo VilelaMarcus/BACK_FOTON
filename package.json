@@ -6,7 +6,7 @@
   "author": "VilelaMarcus <marcusvilela000@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "^5.8.1",
+    "@prisma/client": "^5.16.1",
     "@types/cors": "^2.8.13",
     "@types/nodemailer": "^6.4.14",
     "aws-sdk": "^2.1501.0",
@@ -23,7 +23,6 @@
     "node-ssh": "^13.2.0",
     "nodemailer": "^6.9.8",
     "pdf-lib": "^1.17.1",
-    "prisma": "^5.0.0",
     "redis": "^4.6.7",
     "serverless": "3.36.0",
     "serverless-http": "3.2.0",
@@ -39,6 +38,7 @@
     "@types/express": "^4.17.17",
     "@types/node": "^20.4.5",
     "@types/nodemailer": "^6.4.14",
+    "prisma": "^5.16.1",
     "serverless-dotenv-plugin": "^6.0.0",
     "serverless-webpack-prisma": "^1.2.0",
     "typescript": "^5.1.6"
