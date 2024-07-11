@@ -6,6 +6,7 @@
   - Made the column `laser_id` on table `Pecas` required. This step will fail if there are existing NULL values in that column.
 
 */
+
 -- AlterTable
 ALTER TABLE "Order_OS" ADD CONSTRAINT "Order_OS_pkey" PRIMARY KEY ("id");
 

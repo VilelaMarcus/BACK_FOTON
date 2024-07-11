@@ -48,6 +48,11 @@ model LaserOfCustomer {
   zip_code String?
   customerVisitMeasurements CustomerVisitMeasurement[]
 
+  cnpj String?
+  contact String?
+  serial_number String?
+  modelo String?
+
   laser Laser @relation(fields: [laser_id], references: [id])
   customer Customer @relation(fields: [customer_id], references: [id])
 }
