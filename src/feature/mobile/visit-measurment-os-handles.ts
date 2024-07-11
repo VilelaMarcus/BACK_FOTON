@@ -8,6 +8,9 @@ import generateStyledPDF from '../../utils/generate-pdf';
 type LaserOfCustomer = {
     id: string;
     laser_id: string;
+    contact: string;
+    cnpj: string;
+    serial_number: string;
     customer_id: string;
     address: string;
     customer_name: string;
@@ -57,26 +60,20 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
 
     const maxLength = 40;
     const truncatedAddress = LaserOfCustomer[0].address.substring(0, maxLength);
-        
-    const tableContent = [
-        [date, `Físico de campo: ${tecnic_name}`],
-        [`Equipamento: ${LaserOfCustomer[0].laser_name}`, "S/N: ----------"],
-        [`Local: ${truncatedAddress}`, `Cliente:  ${LaserOfCustomer[0].owner}`],
-    ];
 
     const reportData: ReportData = {
-        client: 'Cliente XPTO',
-        cnpj: '00.000.000/0001-00',
-        address: 'Rua Principal, 123',
-        contact: '(11) 9999-9999',
-        technician: 'João Silva',
-        inspectionDate: '24/06/2024',
+        client: `${LaserOfCustomer[0].owner}`,
+        cnpj: `${LaserOfCustomer[0].cnpj}`,
+        address: `${truncatedAddress}`,
+        contact: `${LaserOfCustomer[0].contact}`,
+        technician: `${tecnic_name}`,
+        inspectionDate: date,
     };
 
     const equipmentData: EquipmentData = {
-        equipment: 'Equipamento XPTO',
-        manufacturer: 'Fabricante XPTO',
-        serialNumber: '123456',
+        equipment: `${LaserOfCustomer[0].laser_name}`,
+        manufacturer: `${LaserOfCustomer[0].brand}`,
+        serialNumber: `${LaserOfCustomer[0].serial_number}`,
     };
 
     const header = 'Relatório de Visita';
