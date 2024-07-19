@@ -8,13 +8,14 @@ interface BodyItem {
 }
 
 async function generateStyledPDF(
-  reportData: ReportData,
-  equipmentData: EquipmentData,
-  footer: string,
-  previousSituations: string,
-  bodyData: BodyItem[],
-  tecnicName: string,
-  signature: string,
+    reportData: ReportData,
+    equipmentData: EquipmentData,
+    footer: string,
+    previousSituations: string,
+    bodyData: BodyItem[],
+    tecnicName: string,
+    signature: string,
+    partData: string[],
 ): Promise<Uint8Array> {
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage([595.28, 841.89]); // A4 dimensions in points
@@ -62,6 +63,20 @@ async function generateStyledPDF(
     const logoBoxY = headerTableY + 1;
     const logoBoxWidth = (headerTableWidth / 2) - 1; // Half width minus 1 point for the border
     const logoBoxHeight = headerTableHeight - 2;
+    const tableMargin = 52.52; // 1.5 cm margin on each side
+
+    const title = 'Relatório de manutenção e Laudo Técnico'
+    const titleTextY = logoBoxY - 26.68; // 2 cm below the equipment table
+
+    page.drawText(title, {
+        x: tableMargin + 110,
+        y: titleTextY,
+        font: boldFont, // Use the bold font for the title
+        size: 12,
+        color: rgb(0, 0, 0),
+    });
+
+
 
     page.drawRectangle({
         x: logoBoxX,
@@ -95,23 +110,27 @@ async function generateStyledPDF(
         borderWidth: 1,
     });
 
-    // Draw the title inside the title box
-    const titleText = 'Laudo Técnico';
-    const titleTextWidth = font.widthOfTextAtSize(titleText, 14);
-    const titleTextX = titleBoxX + (titleBoxWidth - titleTextWidth) / 2;
-    const titleTextY = titleBoxY + (logoBoxHeight / 2) - 10;
+    const fontSize = 8;
+    const titleText = `CNPJ: 04.084.772/0001-00\nRua Emílio de Meneses, 226\nBairro Santa Maria,\nBelo Horizonte MG\nCEP 30525-200\nTel.: (31) 3388-2612`;
+    const titleLines = titleText.split('\n');
+    const titleTextYStart = titleBoxY + logoBoxHeight - 10; // Adjust if necessary to position the first line properly
 
-    page.drawText(titleText, {
-        x: titleTextX,
-        y: titleTextY,
-        font,
-        size: 14,
-        color: rgb(0, 0, 0),
+    titleLines.forEach((line, index) => {
+        const titleTextWidth = font.widthOfTextAtSize(line, 14);
+        const titleTextX = titleBoxX + titleBoxWidth - 105;
+        const titleTextY = titleTextYStart - (index * 10);
+
+        page.drawText(line, {
+            x: titleTextX,
+            y: titleTextY,
+            font,
+            size: fontSize,
+            color: rgb(0, 0, 0),
+        });
     });
 
   // Draw the table with report data
-  const tableStartY = headerTableY - 75 - 56.68; // 2 cm below the header
-  const tableMargin = 52.52; // 1.5 cm margin on each side
+  const tableStartY = headerTableY - 75 - 46.68; // 2 cm below the header
   const tableWidth = width - 2 * tableMargin - 10;
   const tableHeight = 90; // Adjust as necessary (3 rows)
 
@@ -123,6 +142,7 @@ async function generateStyledPDF(
         borderColor: rgb(0, 0, 0),
         borderWidth: 1,
     });
+
 
     // Draw lines separating rows
     const rowHeight = tableHeight / 3;
@@ -149,13 +169,13 @@ async function generateStyledPDF(
     const cellPadding = 10;
     const cellTextOptions = {
     font,
-    size: 12,
+    size: 10,
     color: rgb(0, 0, 0),
     };
 
     const boldTextOptions = {
     font: boldFont,
-    size: 12,
+    size: 10,
     color: rgb(0, 0, 0),
     };
 
@@ -166,8 +186,8 @@ async function generateStyledPDF(
     ];
 
     const values = [
-    [reportData.client, reportData.cnpj],
-    [reportData.address, reportData.contact],
+    [reportData.client, reportData.cnpj !== 'null' ? reportData.cnpj : 'N/A'],
+    [reportData.address.split(',')[0], reportData.contact !== 'null' ? reportData.contact : 'N/A'],
     [reportData.technician, reportData.inspectionDate]
     ];
 
@@ -181,7 +201,7 @@ async function generateStyledPDF(
         ...boldTextOptions
     });
     page.drawText(values[rowIndex][0], {
-        x: tableMargin + columnWidth / 2,
+        x: labelRow[0] === 'Técnico Executor:' ? (tableMargin + columnWidth / 2) : (tableMargin + 60),
         y: textY,
         ...cellTextOptions
     });
@@ -198,22 +218,8 @@ async function generateStyledPDF(
     });
     });
 
-    // Draw centered text 2 cm below the table
-    const centeredTextY = tableStartY - 30.68; // 2 cm below the table
-    const centeredText = "Laudo de manutenção preventiva e inspeção técnica para equipamentos eletromédicos:";
-    const centeredTextWidth = font.widthOfTextAtSize(centeredText, 12);
-    const centeredTextX = (width - centeredTextWidth) / 2;
-
-    page.drawText(centeredText, {
-        x: centeredTextX,
-        y: centeredTextY,
-        font,
-        size: 12,
-        color: rgb(0, 0, 0),
-    });
-
     // Draw the equipment table 2 cm below the centered text
-    const equipmentTableStartY = centeredTextY - 56.68; // 2 cm below the centered text
+    const equipmentTableStartY = tableStartY - 46.68; // 2 cm below the centered text
     const equipmentTableHeight = 40; // Adjust as necessary (2 rows)
     const equipmentColumnWidth = tableWidth / 3;
 
@@ -247,7 +253,7 @@ async function generateStyledPDF(
 
     // Draw text in the equipment table cells
     const equipmentLabels = ['Equipamento', 'Fabricante', 'Número de Série'];
-    const equipmentValues = [equipmentData.equipment, equipmentData.manufacturer, equipmentData.serialNumber];
+    const equipmentValues = [equipmentData.equipment, equipmentData.manufacturer, equipmentData.serialNumber !== 'null' ? equipmentData.serialNumber : 'N/A'];
 
     equipmentLabels.forEach((label, columnIndex) => {
         page.drawText(label, {
@@ -266,31 +272,17 @@ async function generateStyledPDF(
         color: rgb(0, 0, 0),
         });
     });
-
-    // Draw text "Abaixo a relação dos serviços executados:" 2 cm below the equipment table
-    const servicesTextY = equipmentTableStartY - 36.68; // 2 cm below the equipment table
-    const servicesText = "Abaixo a relação dos serviços executados:";
-    const servicesTextX = tableMargin;
-
-    page.drawText(servicesText, {
-        x: servicesTextX,
-        y: servicesTextY,
-        font,
-        size: 12,
-        color: rgb(0, 0, 0),
-    });
-
+ 
     // Calculate the initial Y position for the services table
-    const servicesTableStartY = servicesTextY - 20.68; // 2 cm below the services text
+    const servicesTableStartY = equipmentTableStartY - 8.68; // 2 cm below the services text
 
     // Calculate the height of the services table dynamically based on bodyData length
     const rowCount = bodyData.length + 1; // +1 for header row
-    const servicesTableHeight = rowCount * 20 + 5; // Adjust as necessary
+    const servicesTableHeight = rowCount * 13 + 5; // Adjust as necessary
 
     // Define column widths
     const firstColumnWidth = (tableWidth / 3) - 24.34; // 1 cm less from each side
     const middleColumnWidth = (tableWidth / 3) + 50.68; // 2 cm more
-    const lastColumnWidth = (tableWidth / 3) - 30.34; // 1 cm less from each side
 
     // Draw rectangle for services table
     page.drawRectangle({
@@ -303,7 +295,7 @@ async function generateStyledPDF(
     });
 
     // Draw lines separating columns
-    const columnWidths = [firstColumnWidth, middleColumnWidth, lastColumnWidth];
+    const columnWidths = [firstColumnWidth, middleColumnWidth];
     let currentX = tableMargin;
     columnWidths.forEach((columnWidth, i) => {
         if (i > 0) {
@@ -318,7 +310,7 @@ async function generateStyledPDF(
     });
 
     // Draw headers in the services table
-    const headers = ['Serviços Executados', '', 'Valor Total: R$ XX,xx'];
+    const headers = ['Serviços Executados', ''];
     currentX = tableMargin;
     headers.forEach((header, columnIndex) => {
         let headerY = servicesTableStartY - servicesTableHeight + (servicesTableHeight / 2) - 6; // Centered vertically
@@ -341,28 +333,116 @@ async function generateStyledPDF(
             x: tableMargin + firstColumnWidth + cellPadding,
             y: bodyStartY - rowIndex * 12, // Adjusted font size
             font,
-            size: 10, // Smaller font size
+            size: 8, // Smaller font size
             color: rgb(0, 0, 0),
         });
     });
 
+    // Position for the new parts table
+    const partsTableStartY = bodyStartY - bodyData.length * 12 - 15; // 20 points below the bodyData table
+
+    // Column headers
+    const partsColumnHeaders = ['Quant.', 'Peças utilizadas nesta manutenção', 'Valor'];
+    const columnWidthsPecas = [50, 300, 100];
+
+    partsColumnHeaders.forEach((header, index) => {
+        page.drawText(header, {
+        x: tableMargin + columnWidthsPecas.slice(0, index).reduce((a, b) => a + b, 0),
+        y: partsTableStartY - lineHeight,
+        font: boldFont,
+        size: 10,
+        color: rgb(0, 0, 0),
+        });
+    });
+
+    // Draw the parts data
+    let totalValue = 0;
+    partData.forEach((part, rowIndex) => {
+        const columns = part.split(' - ');
+        const description = columns[0];
+        const valueString = columns[1];
+        const quantity = '1'; // Assuming quantity is always 1 as per the provided format
+
+        page.drawText(quantity, {
+        x: tableMargin,
+        y: partsTableStartY - (rowIndex + 2) * lineHeight, // Adjust row index
+        font,
+        size: 10,
+        color: rgb(0, 0, 0),
+        });
+
+        page.drawText(description, {
+        x: tableMargin + columnWidthsPecas[0],
+        y: partsTableStartY - (rowIndex + 2) * lineHeight,
+        font,
+        size: 10,
+        color: rgb(0, 0, 0),
+        });
+
+        page.drawText(valueString, {
+        x: tableMargin + columnWidthsPecas[0] + columnWidthsPecas[1],
+        y: partsTableStartY - (rowIndex + 2) * lineHeight,
+        font,
+        size: 10,
+        color: rgb(0, 0, 0),
+        });
+
+        // Extract the value from the part string
+        const valueMatch = valueString.split('$');
+        if (valueMatch) {
+            const value = parseFloat(valueMatch[1]);
+            totalValue += value;
+        }
+
+        // Draw row line
+        page.drawLine({
+        start: { x: tableMargin, y: partsTableStartY - (rowIndex + 2) * lineHeight - 5 },
+        end: { x: tableMargin + tableWidth, y: partsTableStartY - (rowIndex + 2) * lineHeight - 5 },
+        thickness: 1,
+        color: rgb(0.75, 0.75, 0.75),
+        });
+    });
+
+    // Draw the total value
+    const totalValueY = partsTableStartY - (partData.length + 2) * lineHeight;
+    page.drawText(`Total: R$${totalValue.toFixed(2)}`, {
+        x: tableMargin + columnWidthsPecas[0] + columnWidthsPecas[1],
+        y: totalValueY,
+        font: boldFont,
+        size: 10,
+        color: rgb(0, 0, 0),
+    });
+
+    // Draw the table border
+    const tableBorderYStart = partsTableStartY - lineHeight - 5;
+    const tableBorderYEnd = totalValueY - lineHeight ;
+
+    page.drawRectangle({
+        x: tableMargin,
+        y: tableBorderYEnd,
+        width: tableWidth,
+        height: tableBorderYStart - tableBorderYEnd,
+        borderColor: rgb(0.75, 0.75, 0.75),
+        borderWidth: 1,
+    });
+
     // Draw text after services table
-    const disclaimerText = `Declaramos para os devidos fins, que o(s) equipamento(s) eletromédico(s)citado(s) acima,\nestá(estão) em conformidadede funcionamento, de acordo com a revisão realizada pela empresa\nFóton Tecnologia LTDA, inscrita no CNPJ: 04.084.772/0001-00.`;
-    const responsibleText = `Responsável técnico: ${tecnicName}`;
+    // const disclaimerText = `Declaramos para os devidos fins, que o(s) equipamento(s) eletromédico(s)citado(s) acima,\nestá(estão) em conformidadede funcionamento, de acordo com a revisão realizada pela empresa\nFóton Tecnologia LTDA, inscrita no CNPJ: 04.084.772/0001-00.`;
+    const responsibleText = `Responsável técnico: Fábio Antônio Vilela - CRT-MG: 044.098.696-63`;
 
     // Calculate positions
     const disclaimerTextY = servicesTableStartY - servicesTableHeight - 26.68; // 1 cm below the services table
-    const responsibleTextY = disclaimerTextY - 58.34; // 1 cm below the disclaimer text
+    const responsibleTextY = tableBorderYEnd - 20.34; // 1 cm below the disclaimer text
 
    // Draw disclaimer text
-    page.drawText(disclaimerText, {
-        x: tableMargin,
-        y: disclaimerTextY,
-        font,
-        size: 10, // Smaller font size
-        color: rgb(0, 0, 0),
-        lineHeight: 13, // Adjust line height as needed
-    });
+    // page.drawText(disclaimerText, {
+    //     x: tableMargin,
+    //     y: disclaimerTextY,
+    //     font,
+    //     size: 10, // Smaller font size
+    //     color: rgb(0, 0, 0),
+    //     lineHeight: 13, // Adjust line height as needed
+    // });
 
     // Draw responsible text
     page.drawText(responsibleText, {
@@ -386,7 +466,7 @@ async function generateStyledPDF(
     page.drawText(footer, { x: 50, y: bottomMargin + 20, font, size: 10, color: rgb(0, 0, 0) });
 
     // Position the signatures just above the blue line
-    const textY = bottomMargin + 130; // 1 cm above the blue line
+    const textY = bottomMargin + 105; // 1 cm above the blue line
     const imageY = textY - 60; // Adjust as needed
     const imageHeight = 50; // Adjust as needed
 
@@ -409,7 +489,7 @@ async function generateStyledPDF(
         const signatureImageBuffer = Buffer.from(base64Data, 'base64');
         const pngImage = await pdfDoc.embedPng(signatureImageBuffer);
 
-        const clinicImageWidth = 100; // Adjust as needed
+        const clinicImageWidth = 90; // Adjust as needed
         const clinicImageX = clinicTextX + (clinicTextWidth / 2) - (clinicImageWidth / 2);
 
         page.drawImage(pngImage, { x: clinicImageX, y: imageY, width: clinicImageWidth, height: imageHeight });

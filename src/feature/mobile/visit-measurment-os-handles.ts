@@ -79,10 +79,10 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
     const header = 'Relatório de Visita';
     const footer = 'Rua Emilio de Menezes 226, Bairro Santa Maria Belo Horizonte – MG CEP 30525-200 - Telefone: (31)3388-2612';
     // Generate PDF
-    const pdfBuffer = await generateStyledPDF(reportData, equipmentData, footer, previousSituations ,bodyContent, tecnic_name, signature);
+    const pdfBuffer = await generateStyledPDF(reportData, equipmentData, footer, previousSituations ,bodyContent, tecnic_name, signature, pecasUtilized);
 
     // Send email with PDF attachment
-    await sendEmailWithAttachment('marcusvilela000@gmail.com,' + '', 'Relátorio de Serviço Executado', pdfBuffer);
+    await sendEmailWithAttachment('marcusvilela000@gmail.com,' + 'fotontecnologia@gmail.com', 'Relátorio de Serviço Executado', pdfBuffer);
 
   await prisma.$disconnect();
   response.status(200).json();
