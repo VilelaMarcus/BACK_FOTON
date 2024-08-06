@@ -329,7 +329,7 @@ async function generateStyledPDF(
 
     bodyData.forEach((item, rowIndex) => {
         const bullet = '• ';
-        page.drawText(bullet + item.description, {
+        page.drawText(bullet + item.description + ':' + item.value, {
             x: tableMargin + firstColumnWidth + cellPadding,
             y: bodyStartY - rowIndex * 12, // Adjusted font size
             font,

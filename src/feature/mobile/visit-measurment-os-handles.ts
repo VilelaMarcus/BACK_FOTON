@@ -33,6 +33,8 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
         throw new HttpError(404, 'Not found');
     }
 
+    console.log('osResponses', request.body);
+
     const LaserOfCustomer = await prisma.$queryRaw<LaserOfCustomer[]>`
     SELECT loc.*, l.*, c.*
     FROM public."LaserOfCustomer" loc
@@ -76,10 +78,12 @@ const createNewVisitByOShandler: ApiHandler = async ({ request, response }) => {
         serialNumber: `${LaserOfCustomer[0].serial_number}`,
     };
 
+    const partData = pecasUtilized.includes('Nao houve troca de peças') ? [] : pecasUtilized;
+
     const header = 'Relatório de Visita';
     const footer = 'Rua Emilio de Menezes 226, Bairro Santa Maria Belo Horizonte – MG CEP 30525-200 - Telefone: (31)3388-2612';
     // Generate PDF
-    const pdfBuffer = await generateStyledPDF(reportData, equipmentData, footer, previousSituations ,bodyContent, tecnic_name, signature, pecasUtilized);
+    const pdfBuffer = await generateStyledPDF(reportData, equipmentData, footer, previousSituations ,bodyContent, tecnic_name, signature, partData);
 
     // Send email with PDF attachment
     await sendEmailWithAttachment('marcusvilela000@gmail.com,' + 'fotontecnologia@gmail.com', 'Relátorio de Serviço Executado', pdfBuffer);
